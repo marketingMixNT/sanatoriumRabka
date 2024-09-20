@@ -1,0 +1,44 @@
+models:
+ Rooms:
+    meta_title: json nullable
+    meta_desc: json nullable
+    title: json unique
+    slug: json unique
+    short_desc: json
+    desc: json
+    thumbnail: text
+    gallery: text
+    sort: integer nullable
+
+  Offers:
+    meta_title: json nullable
+    meta_desc: json nullable
+    title: json unique
+    slug: json unique
+    thumbnail: text
+    banner_img: text
+    short_desc: json
+    description: json
+    published_at: datetime 
+    published_end: datetime 
+    featured: boolean nullable
+
+   Slide:
+    image: text
+    alt: json
+    heading: json
+    text: json
+    link: text
+    sort: integer nullable
+
+  Testimonial:
+    name: json
+    source: json
+    content: json
+    sort: integer nullable
+
+  PrivacyPolicy:
+    content: json
+
+  Regulations:
+    content: json
