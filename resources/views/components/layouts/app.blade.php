@@ -11,10 +11,12 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
-<body class="bg-white ">
+<body class="bg-white font-text font-light h-full">
 
 
-    {{-- <x-shared.nav.navbar /> --}}
+
+    <x-nav.topbar/>
+    <x-nav.navbar />
 
 
 

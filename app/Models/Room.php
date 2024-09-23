@@ -39,5 +39,6 @@ class Room extends Model
         'slug' => 'array',
         'short_desc' => 'array',
         'description' => 'array',
+        'gallery' => 'array',
     ];
 }

@@ -1,6 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-    content: ["./resources/**/*.blade.php"],
+    content: ["./resources/**/*.blade.php", "node_modules/preline/dist/*.js"],
     theme: {
         extend: {
             screens: {
@@ -19,11 +19,10 @@ export default {
                 fontDark: "#222",
             },
             fontFamily: {
-              heading: ["Montserrat", "sans-serif"],
-              text: ["Montserrat", "sans-serif"],
-            
-          },
+                heading: ["Montserrat", "sans-serif"],
+                text: ["Montserrat", "sans-serif"],
+            },
         },
     },
-    plugins: [require('@tailwindcss/typography')],
+    plugins: [require("@tailwindcss/typography"), require("preline/plugin")],
 };

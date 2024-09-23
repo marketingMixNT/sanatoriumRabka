@@ -1,0 +1,1 @@
+<x-layouts.app title="home" description="ddd"></x-layouts.app>

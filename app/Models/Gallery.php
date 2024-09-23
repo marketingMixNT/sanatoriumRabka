@@ -28,5 +28,7 @@ class Gallery extends Model
     protected $casts = [
         'id' => 'integer',
         'category' => 'array',
+        'images' => 'array',
+
     ];
 }
