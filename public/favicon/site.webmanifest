@@ -1,0 +1,14 @@
+{
+    "name": "Sanatorium Rabka",
+    "short_name": "Sanatorium Rabka",
+    "icons": [
+        {
+            "src": "/android-chrome-144x144.png",
+            "sizes": "144x144",
+            "type": "image/png"
+        }
+    ],
+    "theme_color": "#336647",
+    "background_color": "#336647",
+    "display": "standalone"
+}

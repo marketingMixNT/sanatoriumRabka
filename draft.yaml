@@ -1,16 +1,16 @@
 models:
- Rooms:
+  Room:
     meta_title: json nullable
     meta_desc: json nullable
     title: json unique
     slug: json unique
     short_desc: json
-    desc: json
+    description: json
     thumbnail: text
     gallery: text
     sort: integer nullable
 
-  Offers:
+  Offer:
     meta_title: json nullable
     meta_desc: json nullable
     title: json unique
@@ -19,16 +19,21 @@ models:
     banner_img: text
     short_desc: json
     description: json
-    published_at: datetime 
-    published_end: datetime 
-    featured: boolean nullable
+    published_at: datetime
+    published_end: datetime
+    sort: integer nullable
 
-   Slide:
+  Slide:
     image: text
     alt: json
     heading: json
     text: json
     link: text
+    sort: integer nullable
+
+  Gallery:
+    category: json
+    images: text
     sort: integer nullable
 
   Testimonial:
