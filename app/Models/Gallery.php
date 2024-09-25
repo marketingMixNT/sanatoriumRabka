@@ -29,6 +29,5 @@ class Gallery extends Model
         'id' => 'integer',
         'category' => 'array',
         'images' => 'array',
-
     ];
 }

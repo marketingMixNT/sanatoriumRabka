@@ -4,28 +4,32 @@ created:
     - database/factories/SlideFactory.php
     - database/factories/GalleryFactory.php
     - database/factories/TestimonialFactory.php
+    - database/factories/AttractionFactory.php
     - database/factories/PrivacyPolicyFactory.php
     - database/factories/RegulationsFactory.php
-    - database/migrations/2024_09_23_073635_create_rooms_table.php
-    - database/migrations/2024_09_23_073636_create_offers_table.php
-    - database/migrations/2024_09_23_073637_create_slides_table.php
-    - database/migrations/2024_09_23_073638_create_galleries_table.php
-    - database/migrations/2024_09_23_073639_create_testimonials_table.php
-    - database/migrations/2024_09_23_073640_create_privacy_policies_table.php
-    - database/migrations/2024_09_23_073641_create_regulations_table.php
+    - database/migrations/2024_09_24_122811_create_rooms_table.php
+    - database/migrations/2024_09_24_122812_create_offers_table.php
+    - database/migrations/2024_09_24_122813_create_slides_table.php
+    - database/migrations/2024_09_24_122814_create_galleries_table.php
+    - database/migrations/2024_09_24_122815_create_testimonials_table.php
+    - database/migrations/2024_09_24_122816_create_attractions_table.php
+    - database/migrations/2024_09_24_122817_create_privacy_policies_table.php
+    - database/migrations/2024_09_24_122818_create_regulations_table.php
     - app/Models/Room.php
     - app/Models/Offer.php
     - app/Models/Slide.php
     - app/Models/Gallery.php
     - app/Models/Testimonial.php
+    - app/Models/Attraction.php
     - app/Models/PrivacyPolicy.php
     - app/Models/Regulations.php
 models:
     User: { name: string, email: string, email_verified_at: 'timestamp nullable default:NULL', password: string, remember_token: 'string:100 nullable default:NULL' }
     Room: { meta_title: 'json nullable', meta_desc: 'json nullable', title: 'json unique', slug: 'json unique', short_desc: json, description: json, thumbnail: text, gallery: text, sort: 'integer nullable' }
     Offer: { meta_title: 'json nullable', meta_desc: 'json nullable', title: 'json unique', slug: 'json unique', thumbnail: text, banner_img: text, short_desc: json, description: json, published_at: datetime, published_end: datetime, sort: 'integer nullable' }
-    Slide: { image: text, alt: json, heading: json, text: json, link: text, sort: 'integer nullable' }
+    Slide: { image: text, alt: json, heading: json, text: json, link: text, button_text: json, sort: 'integer nullable' }
     Gallery: { category: json, images: text, sort: 'integer nullable' }
     Testimonial: { name: json, source: json, content: json, sort: 'integer nullable' }
+    Attraction: { name: json, image: text, sort: 'integer nullable' }
     PrivacyPolicy: { content: json }
     Regulations: { content: json }

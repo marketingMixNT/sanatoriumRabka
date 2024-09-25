@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Offer;
+use App\Models\Room;
+use App\Models\Slide;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -11,6 +14,11 @@ class HomeController extends Controller
      */
     public function __invoke(Request $request)
     {
-        return view('pages.home.index');
+        $slides = Slide::orderBy('sort','asc')->get();
+        $offers = Offer::orderBy('sort','asc')->get();
+
+      
+
+        return view('pages.home.index', compact('slides','offers'));
     }
 }

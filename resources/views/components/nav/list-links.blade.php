@@ -2,7 +2,7 @@
 
 <ul class="flex flex-col lg:flex-row flex-start lg:justify-center items-start lg:items-center gap-8 text-fontDark lg:text-fontLight">
     <li>
-        <a href="" class="hover:text-primary-400 duration-300">O nas</a>
+        <a href="{{route('about')}}" class="hover:text-primary-400 duration-300">O nas</a>
     </li>
     <li>
         <x-nav.dropdown title="Pokoje">

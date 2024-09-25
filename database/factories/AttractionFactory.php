@@ -4,16 +4,16 @@ namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
-use App\Models\Slide;
+use App\Models\Attraction;
 
-class SlideFactory extends Factory
+class AttractionFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = Slide::class;
+    protected $model = Attraction::class;
 
     /**
      * Define the model's default state.
@@ -21,12 +21,8 @@ class SlideFactory extends Factory
     public function definition(): array
     {
         return [
+            'name' => '{}',
             'image' => $this->faker->text(),
-            'alt' => '{}',
-            'heading' => '{}',
-            'text' => '{}',
-            'link' => $this->faker->text(),
-            'button_text' => '{}',
             'sort' => $this->faker->numberBetween(-10000, 10000),
         ];
     }

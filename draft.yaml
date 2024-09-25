@@ -29,6 +29,7 @@ models:
     heading: json
     text: json
     link: text
+    button_text: json
     sort: integer nullable
 
   Gallery:
@@ -40,6 +41,11 @@ models:
     name: json
     source: json
     content: json
+    sort: integer nullable
+
+  Attraction:
+    name: json
+    image: text
     sort: integer nullable
 
   PrivacyPolicy:

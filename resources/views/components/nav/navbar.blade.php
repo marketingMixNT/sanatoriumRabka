@@ -1,13 +1,15 @@
-<nav class="w-full bg-secondary-400 flex justify-between items-center py-3 px-6 max-w-screen-max mx-auto ">
+<nav class="w-full bg-secondary-400 flex justify-between items-center py-3 px-6 max-w-screen-max mx-auto sticky top-0 z-50">
+
 
     {{-- links --}}
     <div class="flex justify-center items-center gap-8">
+        
         {{-- logo --}}
         <a href="{{route('home')}}" aria-label="strona główna"><img src="{{asset('assets/logo/logo--light.png')}}"
                 alt="logo sanatorium rabka" class="w-28"></a>
+
         {{-- nav links --}}
         <div class="hidden lg:block">
-
             <x-nav.list-links />
         </div>
     </div>
@@ -25,6 +27,6 @@
         <x-lucide-menu class="size-6 text-fontLight" />
     </button>
 
-
+    {{-- canvas --}}
     <x-nav.canvas />
 </nav>
