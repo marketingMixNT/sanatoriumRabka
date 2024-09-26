@@ -1,5 +1,8 @@
 import './bootstrap';
-import 'preline'
+import './partials/lightbox';
+import './partials/gallery';
+import 'flowbite';
+
 
 
 

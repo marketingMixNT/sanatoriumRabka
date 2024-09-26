@@ -6,3 +6,6 @@
 @tailwind utilities;
 
 
+.gallery-btn {
+    @apply bg-secondary-400
+}

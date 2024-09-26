@@ -18,7 +18,7 @@
         <a href="">Rehabilitacja</a>
     </li>
     <li>
-        <a href="">Galeria</a>
+        <a href="{{route('gallery')}}" class="hover:text-primary-400 duration-300">Galeria</a>
     </li>
     <li>
         <a href="">Oferta</a>

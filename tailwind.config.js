@@ -1,6 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-    content: ["./resources/**/*.blade.php", "node_modules/preline/dist/*.js","./vendor/awcodes/filament-tiptap-editor/resources/**/*.blade.php"],
+    content: ["./resources/**/*.blade.php",  "./node_modules/flowbite/**/*.js","./vendor/awcodes/filament-tiptap-editor/resources/**/*.blade.php"],
     theme: {
         extend: {
             screens: {
@@ -24,5 +24,5 @@ export default {
             },
         },
     },
-    plugins: [require("@tailwindcss/typography"), require("preline/plugin")],
+    plugins: [require("@tailwindcss/typography"),  require('flowbite/plugin')],
 };
