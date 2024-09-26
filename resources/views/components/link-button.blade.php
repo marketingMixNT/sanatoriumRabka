@@ -13,3 +13,6 @@ $styles = $type === 'secondary'
     class="{{ $class }} bg-primary-400 text-fontLight rounded-sm uppercase {{ $styles }} text-sm py-2.5 px-6 font-normal duration-300 shadow-md">
     {{ $slot }}
 </a>
+
+
+

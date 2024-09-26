@@ -27,6 +27,6 @@
         <a href="">Rabka Zdrój</a>
     </li>
     <li>
-        <a href="">Kontakt</a>
+        <a href="{{route('contact')}}" class="hover:text-primary-400 duration-300">Kontakt</a>
     </li>
 </ul>

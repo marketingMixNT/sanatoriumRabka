@@ -22,6 +22,7 @@
 
     {{ $slot }}
 
+    <x-map/>
 <x-footer />
 
 

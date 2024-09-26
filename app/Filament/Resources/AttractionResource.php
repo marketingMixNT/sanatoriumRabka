@@ -15,6 +15,10 @@ use App\Filament\Resources\AttractionResource\Pages;
 use App\Filament\Resources\AttractionResource\RelationManagers;
 use Livewire\Features\SupportFileUploads\TemporaryUploadedFile;
 
+
+use FilamentTiptapEditor\TiptapEditor;
+use FilamentTiptapEditor\Enums\TiptapOutput;
+
 class AttractionResource extends Resource
 {
     protected static ?string $model = Attraction::class;
@@ -41,6 +45,11 @@ class AttractionResource extends Resource
                 ->placeholder('np. stołówka i kawiarnia z bilardem')
                 ->required(),
 
+                // TiptapEditor::make('content')->profile('default')
+                // ->output(TiptapOutput::Json)
+                // ->maxContentWidth('5xl')
+                // ->required(),
+
                 Forms\Components\FileUpload::make('image')
                     ->label('Zdjęcie')
                     ->directory('attractions')
@@ -59,6 +68,8 @@ class AttractionResource extends Resource
                     ])
                     ->required(),
             ]);
+
+            
     }
 
     public static function table(Table $table): Table

@@ -1,6 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-    content: ["./resources/**/*.blade.php", "node_modules/preline/dist/*.js"],
+    content: ["./resources/**/*.blade.php", "node_modules/preline/dist/*.js","./vendor/awcodes/filament-tiptap-editor/resources/**/*.blade.php"],
     theme: {
         extend: {
             screens: {
