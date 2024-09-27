@@ -2,48 +2,36 @@
 
 namespace App\Filament\Resources;
 
-
-
-
+use Filament\Forms;
+use Filament\Tables;
+use App\Models\Rabka;
 use Filament\Forms\Set;
-
-
+use Filament\Forms\Form;
+use Filament\Tables\Table;
 use Illuminate\Support\Str;
+use Filament\Resources\Resource;
 
 use Awcodes\Shout\Components\Shout;
 use Livewire\Component as Livewire;
 use Filament\Forms\Components\Section;
+use Filament\Forms\Components\Textarea;
+use Filament\Tables\Columns\TextColumn;
 use Filament\Forms\Components\Component;
 use Filament\Forms\Components\RichEditor;
-
-use Filament\Resources\Concerns\Translatable;
-
-
-
+use Illuminate\Database\Eloquent\Builder;
+use App\Filament\Resources\RabkaResource\Pages;
+use Illuminate\Database\Eloquent\SoftDeletingScope;
+use App\Filament\Resources\RabkaResource\RelationManagers;
 use Livewire\Features\SupportFileUploads\TemporaryUploadedFile;
 use Schmeits\FilamentCharacterCounter\Forms\Components\TextInput;
-use App\Filament\Resources\RoomResource\Pages;
-use App\Filament\Resources\RoomResource\RelationManagers;
-use App\Models\Room;
-use Filament\Forms;
-use Filament\Forms\Form;
-use Filament\Resources\Resource;
-use Filament\Tables;
-use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
-class RoomResource extends Resource
+
+class RabkaResource extends Resource
 {
-    
-    protected static ?string $model = Room::class;
+    protected static ?string $model = Rabka::class;
 
-    public static function canCreate(): bool
-    {
-        // Sprawdzenie, czy istnieje już rekord
-        return Room::count() === 0;
-    }
+    protected static ?string $navigationIcon = 'heroicon-o-information-circle';
 
-    protected static ?string $navigationIcon = 'heroicon-o-home';
+    protected static ?string $navigationGroup = 'Rabka Zdrój';
 
     public static function form(Form $form): Form
     {
@@ -93,20 +81,18 @@ class RoomResource extends Resource
                     ->description('Podaj nazwę pokoju, dodaj opis oraz wyposażenie')
                     ->schema([
 
-                        Forms\Components\TextInput::make('title')
-                            ->label('Nazwa Pokoju')
-                            ->unique(ignoreRecord: true)
+                        Forms\Components\TextInput::make('heading')
+                            ->label('Nagłówek')
+
                             ->minLength(3)
                             ->maxLength(255)
-                            ->required()
-                            ->live(debounce: 1000)
-                            ->afterStateUpdated(fn(Set $set, ?string $state) => $set('slug', Str::slug($state))),
+                            ->required(),
+                        Forms\Components\TextInput::make('subheading')
+                            ->label("Subnagłówek")
 
-                        Forms\Components\TextInput::make('slug')
-                            ->label('Slug')
-                            ->required()
-                            ->placeholder('Przyjazny adres url który wygeneruje się automatycznie')
-                            ->readOnly(),
+                            ->minLength(3)
+                            ->maxLength(255)
+                            ->required(),
 
                         RichEditor::make('short_desc')
                             ->label('Krótki opis')
@@ -118,7 +104,35 @@ class RoomResource extends Resource
                             ->placeholder('Pojawi się na liście apartamentów')
                             ->columnSpanFull(),
 
-                        RichEditor::make('description')
+
+                        Forms\Components\FileUpload::make('gallery')
+                            ->label('Galeria')
+                            ->directory('apartments-galleries')
+                            ->getUploadedFileNameForStorageUsing(
+                                fn(TemporaryUploadedFile $file): string => 'apartament-galeria-' . now()->format('H-i-s') . '-' . str_replace([' ', '.'], '', microtime()) . '.' . $file->getClientOriginalExtension()
+                            )
+                            ->multiple()
+                            ->appendFiles()
+                            ->image()
+                            ->reorderable()
+                            ->hint('Galeria musi mieć co najmniej 5 zdjęć')
+                            ->maxSize(8192)
+                            ->optimize('webp')
+                            ->imageEditor()
+                            ->minFiles(3)
+                            ->maxFiles(12)
+                            ->panelLayout('grid')
+                            ->imageEditorAspectRatios([
+                                null,
+                                '16:9',
+                                '4:3',
+                                '1:1',
+                            ])
+                            ->required()
+
+                            ->columnSpanFull(),
+
+                            RichEditor::make('description')
                             ->label('Opis główny')
                             ->toolbarButtons([
                                 'bold',
@@ -138,60 +152,10 @@ class RoomResource extends Resource
                             ->columnSpanFull(),
                     ]),
 
-                Section::make('Zdjęcia')
-                    ->icon('heroicon-o-information-circle')
-                    ->columns(1)
-                    ->collapsible()
-                    ->collapsed()
-                    ->description('Dodaj miniaturkę oraz zdjęcia go galerii')
-                    ->schema([
+             
 
-                        Forms\Components\FileUpload::make('thumbnail')
-                            ->label('Miniaturka')
-                            ->directory('apartments-thumbnails')
-                            ->getUploadedFileNameForStorageUsing(
-                                fn(TemporaryUploadedFile $file): string => 'apartment-miniaturka' . now()->format('Ymd_His') . '.' . $file->getClientOriginalExtension()
-                            )
-                            ->image()
-                            ->maxSize(8192)
-                            ->optimize('webp')
-                            ->imageEditor()
-                            ->imageEditorAspectRatios([
-                                null,
-                                '16:9',
-                                '4:3',
-                                '1:1',
-                            ])
-                            ->required()
-                            ->columnSpanFull(),
-                        Forms\Components\FileUpload::make('gallery')
-                            ->label('Galeria')
-                            ->directory('apartments-galleries')
-                            ->getUploadedFileNameForStorageUsing(
-                                fn(TemporaryUploadedFile $file): string => 'apartament-galeria-' . now()->format('H-i-s') . '-' . str_replace([' ', '.'], '', microtime()) . '.' . $file->getClientOriginalExtension()
-                            )
-                            ->multiple()
-                            ->appendFiles()
-                            ->image()
-                            ->reorderable()
-                            ->hint('Galeria musi mieć co najmniej 5 zdjęć')
-                            ->maxSize(8192)
-                            ->optimize('webp')
-                            ->imageEditor()
-                            ->minFiles(5)
-                            ->maxFiles(16)
-                            ->panelLayout('grid')
-                            ->imageEditorAspectRatios([
-                                null,
-                                '16:9',
-                                '4:3',
-                                '1:1',
-                            ])
-                            ->required()
 
-                            ->columnSpanFull(),
 
-                    ]),
 
 
             ]);
@@ -200,30 +164,12 @@ class RoomResource extends Resource
     public static function table(Table $table): Table
     {
         return $table
-            ->reorderable('sort')
-            ->defaultSort('sort', 'desc')
             ->columns([
-                Tables\Columns\TextColumn::make('sort')
-                    ->label('#')
-                    ->sortable(),
-
-                Tables\Columns\ImageColumn::make('thumbnail')
-                    ->label('Miniaturka'),
-
-                Tables\Columns\TextColumn::make('title')
-                    ->label('Nazwa')
-                    ->description(function (Room $record) {
-                        return Str::limit(strip_tags($record->short_desc), 40);
-                    })
-                    ->searchable()
-                    ->sortable(),
                 Tables\Columns\TextColumn::make('created_at')
-                    ->label('Data utworzenia')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
                 Tables\Columns\TextColumn::make('updated_at')
-                    ->label('Data modyfikacji')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
@@ -233,7 +179,6 @@ class RoomResource extends Resource
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
-                Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
@@ -252,23 +197,23 @@ class RoomResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListRooms::route('/'),
-            'create' => Pages\CreateRoom::route('/create'),
-            'edit' => Pages\EditRoom::route('/{record}/edit'),
+            'index' => Pages\ListRabkas::route('/'),
+            'create' => Pages\CreateRabka::route('/create'),
+            'edit' => Pages\EditRabka::route('/{record}/edit'),
         ];
     }
 
     public static function getNavigationLabel(): string
     {
-        return ('Pokoje');
+        return ('Informacje');
     }
     public static function getPluralLabel(): string
     {
-        return ('Pokoje');
+        return ('Informacje');
     }
 
     public static function getLabel(): string
     {
-        return ('Pokój');
+        return ('Informacja');
     }
 }

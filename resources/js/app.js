@@ -1,6 +1,7 @@
 import './bootstrap';
 import './partials/lightbox';
 import './partials/gallery';
+import "./partials/mobileButtons"
 import 'flowbite';
 
 

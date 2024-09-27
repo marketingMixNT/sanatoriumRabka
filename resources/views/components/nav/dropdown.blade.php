@@ -1,21 +1,16 @@
-<div class="m-1 hs-dropdown [--trigger:hover] relative inline-flex">
-    <button id="hs-dropdown-hover-event" type="button" class="flex justify-center items-center gap-1"
-        aria-haspopup="menu" aria-expanded="false" aria-label="Dropdown">
-        {{$title}}
-        <svg class="hs-dropdown-open:rotate-180 size-4" xmlns="http://www.w3.org/2000/svg" width="24"
-            height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-            stroke-linecap="round" stroke-linejoin="round">
-            <path d="m6 9 6 6 6-6" />
-        </svg>
-    </button>
+@props(['id','title' ])
 
-    <div class="hs-dropdown-menu transition-[opacity,margin] duration hs-dropdown-open:opacity-100 opacity-0 hidden min-w-60 bg-white shadow-md rounded-sm p-1 space-y-0.5 mt-2  after:h-4 after:absolute after:-bottom-4 after:start-0 after:w-full before:h-4 before:absolute before:-top-4 before:start-0 before:w-full"
-        role="menu" aria-orientation="vertical" aria-labelledby="hs-dropdown-hover-event">
+<button id="menu-{{$id}}" data-dropdown-toggle="{{$id}}"
+    class="  rounded-sm   text-center inline-flex items-center  hover:text-primary-400 duration-300"
+    type="button">{{$title}}<svg class="w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+        fill="none" viewBox="0 0 10 6">
+        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="m1 1 4 4 4-4" />
+    </svg>
+</button>
+
+<!-- Dropdown menu -->
+<div id="{{$id}}" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-sm shadow w-44 ">
+    <ul class="" aria-labelledby="menu-{{$id}}">
         {{$slot}}
-
-
-
-
-    </div>
-
+    </ul>
 </div>

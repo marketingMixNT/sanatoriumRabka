@@ -1,4 +1,3 @@
-models:
   Room:
     meta_title: json nullable
     meta_desc: json nullable
@@ -54,11 +53,11 @@ models:
   Regulations:
     content: json
 
-  NFZPages:
+ Rabka:
     meta_title: json nullable
     meta_desc: json nullable
-    title: json unique
-    slug: json unique
-    content: json
-    sort: integer nullable
-   
+    heading: json 
+    subheading: json
+    short_desc: json
+    description: json
+    gallery: text

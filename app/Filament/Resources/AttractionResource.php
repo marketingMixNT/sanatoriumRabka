@@ -45,10 +45,7 @@ class AttractionResource extends Resource
                 ->placeholder('np. stołówka i kawiarnia z bilardem')
                 ->required(),
 
-                // TiptapEditor::make('content')->profile('default')
-                // ->output(TiptapOutput::Json)
-                // ->maxContentWidth('5xl')
-                // ->required(),
+               
 
                 Forms\Components\FileUpload::make('image')
                     ->label('Zdjęcie')
