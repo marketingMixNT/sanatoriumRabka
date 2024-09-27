@@ -1,3 +1,4 @@
+models:
   Room:
     meta_title: json nullable
     meta_desc: json nullable
@@ -53,11 +54,39 @@
   Regulations:
     content: json
 
- Rabka:
+  Rabka:
     meta_title: json nullable
     meta_desc: json nullable
-    heading: json 
-    subheading: json
-    short_desc: json
+    title: json
     description: json
-    gallery: text
+
+  RabkaAttractions:
+    meta_title: json nullable
+    meta_desc: json nullable
+    banner_img: text
+    heading: json
+    subheading: json
+    description: json
+
+  Rehabilitation:
+    meta_title: json nullable
+    meta_desc: json nullable
+    banner_img: text
+    title: json unique
+    slug: json unique
+    description: json
+
+  RehabilitationTreatments:
+    meta_title: json nullable
+    meta_desc: json nullable
+    banner_img: text
+    title: json
+    description: json
+
+   Nfz:
+    meta_title: json nullable
+    meta_desc: json nullable
+    banner_img: text
+    title: json unique
+    slug: json unique
+    description: json

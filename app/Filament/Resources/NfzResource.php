@@ -2,26 +2,25 @@
 
 namespace App\Filament\Resources;
 
+use App\Filament\Resources\NfzResource\Pages;
+use App\Filament\Resources\NfzResource\RelationManagers;
+use App\Models\Nfz;
 use Filament\Forms;
-use Filament\Tables;
 use Filament\Forms\Form;
-use Filament\Tables\Table;
-use App\Models\RabkaAttraction;
 use Filament\Resources\Resource;
-use FilamentTiptapEditor\TiptapEditor;
+use Filament\Tables;
+use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
-use FilamentTiptapEditor\Enums\TiptapOutput;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
-use App\Filament\Resources\RabkaAttractionResource\Pages;
-use App\Filament\Resources\RabkaAttractionResource\RelationManagers;
 
-class RabkaAttractionResource extends Resource
+class NfzResource extends Resource
 {
-    protected static ?string $model = RabkaAttraction::class;
+    protected static ?string $model = Nfz::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
-    protected static ?string $navigationGroup = 'Rabka Zdrój';
+
+    protected static ?string $navigationGroup = 'NFZ';
 
     public static function form(Form $form): Form
     {
@@ -31,10 +30,16 @@ class RabkaAttractionResource extends Resource
                     ->columnSpanFull(),
                 Forms\Components\Textarea::make('meta_desc')
                     ->columnSpanFull(),
-
-                TiptapEditor::make('description')->profile('default')
-                    ->output(TiptapOutput::Json)
-                    ->maxContentWidth('5xl')
+                Forms\Components\Textarea::make('banner_img')
+                    ->required()
+                    ->columnSpanFull(),
+                Forms\Components\Textarea::make('title')
+                    ->required()
+                    ->columnSpanFull(),
+                Forms\Components\Textarea::make('slug')
+                    ->required()
+                    ->columnSpanFull(),
+                Forms\Components\Textarea::make('description')
                     ->required()
                     ->columnSpanFull(),
             ]);
@@ -44,10 +49,6 @@ class RabkaAttractionResource extends Resource
     {
         return $table
             ->columns([
-
-                Tables\Columns\TextColumn::make('meta_title')
-                ->label('Nazwa'),
-
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
@@ -62,7 +63,6 @@ class RabkaAttractionResource extends Resource
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
-                Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
@@ -81,23 +81,23 @@ class RabkaAttractionResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListRabkaAttractions::route('/'),
-            'create' => Pages\CreateRabkaAttraction::route('/create'),
-            'edit' => Pages\EditRabkaAttraction::route('/{record}/edit'),
+            'index' => Pages\ListNfzs::route('/'),
+            'create' => Pages\CreateNfz::route('/create'),
+            'edit' => Pages\EditNfz::route('/{record}/edit'),
         ];
     }
 
     public static function getNavigationLabel(): string
     {
-        return ('Atrakcje');
+        return ('Strony');
     }
     public static function getPluralLabel(): string
     {
-        return ('Atrakcje');
+        return ('Strony');
     }
 
     public static function getLabel(): string
     {
-        return ('Atrakcja');
+        return ('Strony');
     }
 }

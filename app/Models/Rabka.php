@@ -18,9 +18,7 @@ class Rabka extends Model
         'meta_title',
         'meta_desc',
         'title',
-        'slug',
         'description',
-        'gallery',
     ];
 
     /**
@@ -33,8 +31,6 @@ class Rabka extends Model
         'meta_title' => 'array',
         'meta_desc' => 'array',
         'title' => 'array',
-        'slug' => 'array',
         'description' => 'array',
-        'gallery'=>"array"
     ];
 }

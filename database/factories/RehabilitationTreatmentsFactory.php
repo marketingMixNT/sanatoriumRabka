@@ -4,16 +4,16 @@ namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
-use App\Models\Rabka;
+use App\Models\RehabilitationTreatments;
 
-class RabkaFactory extends Factory
+class RehabilitationTreatmentsFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = Rabka::class;
+    protected $model = RehabilitationTreatments::class;
 
     /**
      * Define the model's default state.
@@ -23,6 +23,7 @@ class RabkaFactory extends Factory
         return [
             'meta_title' => '{}',
             'meta_desc' => '{}',
+            'banner_img' => $this->faker->text(),
             'title' => '{}',
             'description' => '{}',
         ];

@@ -11,15 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('rabkas', function (Blueprint $table) {
+        Schema::create('rehabilitations', function (Blueprint $table) {
             $table->id();
             $table->json('meta_title')->nullable();
             $table->json('meta_desc')->nullable();
-            $table->json('heading');
-            $table->json('subheading');
-            $table->json('short_desc');
+            $table->text('banner_img');
+            $table->json('title');
             $table->json('description');
-            $table->text('gallery');
             $table->timestamps();
         });
     }
@@ -29,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('rabkas');
+        Schema::dropIfExists('rehabilitations');
     }
 };

@@ -1,16 +1,20 @@
 created:
-    - database/factories/RabkaAttractionFactory.php
-    - database/migrations/2024_09_27_131100_create_rabka_attractions_table.php
-    - app/Models/RabkaAttraction.php
+    - database/factories/NfzFactory.php
+    - database/migrations/2024_09_27_144710_create_nfzs_table.php
+    - app/Models/Nfz.php
 models:
+    Attraction: { name: longtext, image: text, sort: 'integer nullable default:NULL' }
+    Gallery: { category: longtext, images: text, sort: 'integer nullable default:NULL' }
+    Offer: { meta_title: 'longtext nullable default:NULL', meta_desc: 'longtext nullable default:NULL', title: longtext, slug: longtext, thumbnail: text, banner_img: text, short_desc: longtext, description: longtext, published_at: datetime, published_end: datetime, sort: 'integer nullable default:NULL' }
+    PrivacyPolicy: { content: longtext }
+    Rabka: { meta_title: 'longtext nullable default:NULL', meta_desc: 'longtext nullable default:NULL', title: longtext, description: longtext }
+    RabkaAttraction: { meta_title: 'longtext nullable default:NULL', meta_desc: 'longtext nullable default:NULL', banner_img: text, heading: longtext, subheading: longtext, description: longtext }
+    RabkaAttractions: { meta_title: 'longtext nullable default:NULL', meta_desc: 'longtext nullable default:NULL', banner_img: text, heading: longtext, subheading: longtext, description: longtext }
+    Regulations: { content: longtext }
+    Rehabilitation: { meta_title: 'longtext nullable default:NULL', meta_desc: 'longtext nullable default:NULL', banner_img: text, title: longtext, description: longtext }
+    RehabilitationTreatments: { meta_title: 'longtext nullable default:NULL', meta_desc: 'longtext nullable default:NULL', banner_img: text, title: longtext, description: longtext }
+    Room: { meta_title: 'longtext nullable default:NULL', meta_desc: 'longtext nullable default:NULL', title: longtext, slug: longtext, short_desc: longtext, description: longtext, thumbnail: text, gallery: text, sort: 'integer nullable default:NULL' }
+    Slide: { image: text, alt: longtext, heading: longtext, text: longtext, link: text, button_text: longtext, sort: 'integer nullable default:NULL' }
+    Testimonial: { name: longtext, source: longtext, content: longtext, sort: 'integer nullable default:NULL' }
     User: { name: string, email: string, email_verified_at: 'timestamp nullable default:NULL', password: string, remember_token: 'string:100 nullable default:NULL' }
-    Room: { meta_title: 'json nullable', meta_desc: 'json nullable', title: 'json unique', slug: 'json unique', short_desc: json, description: json, thumbnail: text, gallery: text, sort: 'integer nullable' }
-    Offer: { meta_title: 'json nullable', meta_desc: 'json nullable', title: 'json unique', slug: 'json unique', thumbnail: text, banner_img: text, short_desc: json, description: json, published_at: datetime, published_end: datetime, sort: 'integer nullable' }
-    Slide: { image: text, alt: json, heading: json, text: json, link: text, button_text: json, sort: 'integer nullable' }
-    Gallery: { category: json, images: text, sort: 'integer nullable' }
-    Testimonial: { name: json, source: json, content: json, sort: 'integer nullable' }
-    Attraction: { name: json, image: text, sort: 'integer nullable' }
-    PrivacyPolicy: { content: json }
-    Regulations: { content: json }
-    Rabka: { meta_title: 'json nullable', meta_desc: 'json nullable', title: 'json unique', slug: 'json unique', description: json, thumbnail: text, gallery: text }
-    RabkaAttraction: { meta_title: 'json nullable', meta_desc: 'json nullable', description: json, gallery: text }
+    Nfz: { meta_title: 'json nullable', meta_desc: 'json nullable', banner_img: text, title: 'json unique', slug: 'json unique', description: json }

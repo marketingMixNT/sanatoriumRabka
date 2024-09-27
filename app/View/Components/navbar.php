@@ -5,6 +5,7 @@ namespace App\View\Components;
 use Closure;
 use App\Models\Room;
 use App\Models\Offer;
+use App\Models\Rehabilitation;
 use Illuminate\View\Component;
 use Illuminate\Contracts\View\View;
 
@@ -13,6 +14,8 @@ class navbar extends Component
 
     public $rooms;
     public $offers;
+
+    public $rehabilitations;
     /**
      * Create a new component instance.
      */
@@ -20,6 +23,7 @@ class navbar extends Component
     {
         $this->rooms = Room::all();
         $this->offers = Offer::all();
+        $this->rehabilitations = Rehabilitation::all();
     }
 
     /**
@@ -29,8 +33,10 @@ class navbar extends Component
     {
 
         // dd($this->offers);
-        return view('components.nav.navbar',[
-            'offers' => $this->offers, // Upewnij się, że przekazujesz $offers
+        return view('components.nav.navbar', [
+            'offers' => $this->offers,
+            "rooms" => $this->rooms,
+            "rehabilitations" => $this->rehabilitations,
         ]);
     }
 }

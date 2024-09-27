@@ -24,6 +24,7 @@ class AttractionResource extends Resource
     protected static ?string $model = Attraction::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-hand-thumb-up';
+    protected static ?string $navigationGroup = 'Strona główna';
 
     public static function form(Form $form): Form
     {

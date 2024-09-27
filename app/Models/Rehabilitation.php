@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Room extends Model
+class Rehabilitation extends Model
 {
     use HasFactory;
 
@@ -17,13 +17,9 @@ class Room extends Model
     protected $fillable = [
         'meta_title',
         'meta_desc',
+        'banner_img',
         'title',
-        'slug',
-        'short_desc',
         'description',
-        'thumbnail',
-        'gallery',
-        'sort',
     ];
 
     /**
@@ -36,8 +32,6 @@ class Room extends Model
         'meta_title' => 'array',
         'meta_desc' => 'array',
         'title' => 'array',
-        'slug' => 'array',
-        'short_desc' => 'array',
         'description' => 'array',
     ];
 }

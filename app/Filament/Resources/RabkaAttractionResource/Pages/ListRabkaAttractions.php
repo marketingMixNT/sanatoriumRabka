@@ -3,6 +3,7 @@
 namespace App\Filament\Resources\RabkaAttractionResource\Pages;
 
 use App\Filament\Resources\RabkaAttractionResource;
+use App\Models\RabkaAttraction;
 use Filament\Actions;
 use Filament\Resources\Pages\ListRecords;
 
@@ -12,8 +13,10 @@ class ListRabkaAttractions extends ListRecords
 
     protected function getHeaderActions(): array
     {
-        return [
-            Actions\CreateAction::make(),
-        ];
+        return RabkaAttraction::count() === 0
+        ? [Actions\CreateAction::make()]
+        : [];
+
+        
     }
 }

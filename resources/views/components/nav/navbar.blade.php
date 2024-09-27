@@ -21,7 +21,45 @@
                         <a href="">NFZ</a>
                     </li>
                     <li>
-                        <a href="">Rehabilitacja</a>
+                        <div class="mx-auto flex  w-full items-center justify-center  ">
+                            <div class="group relative cursor-pointer py-2">
+
+                                <div class="flex items-center justify-between  ">
+                                    <a href="{{route('offer.index')}}" class="menu-hover  ">
+                                        Rehabilitacja
+                                    </a>
+                                    <span>
+                                        <svg class="w-2.5 h-2.5 ms-3" aria-hidden="true"
+                                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                                stroke-width="1" d="m1 1 4 4 4-4" />
+                                    </span>
+                                </div>
+
+                                <div
+                                    class="mt-2 invisible absolute z-50 flex  flex-col bg-gray-100 py-1 px-4  shadow-xl group-hover:visible w-44">
+
+                                  
+                                    
+                                    @foreach ($rehabilitations as $rehabilitation)
+                                    <a href="{{route('offer.show', $rehabilitation->slug)}}"
+                                        class=" my-2 block border-b border-gray-100 py-1 text-fontDark hover:text-secondary-400 md:mx-2">
+                                        {{$rehabilitation->title}}
+                                    </a>
+                                    @endforeach
+                                    <a href="{{route('rabka.attractions')}}"
+                                        class=" my-2 block border-b border-gray-100 py-1 text-fontDark hover:text-secondary-400 md:mx-2">
+                                        Zabiegi
+                                    </a>
+                                
+
+
+
+
+
+                                </div>
+                            </div>
+                        </div>
                     </li>
                     <li>
                         <a href="{{route('gallery')}}" class="hover:text-primary-400 duration-300">Galeria</a>

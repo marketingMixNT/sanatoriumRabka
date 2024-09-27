@@ -45,6 +45,8 @@ class RoomResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-home';
 
+    protected static ?string $navigationGroup = 'Pokoje';
+
     public static function form(Form $form): Form
     {
         return $form

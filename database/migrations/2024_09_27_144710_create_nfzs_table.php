@@ -11,12 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('rabka_attractions', function (Blueprint $table) {
+        Schema::create('nfzs', function (Blueprint $table) {
             $table->id();
             $table->json('meta_title')->nullable();
             $table->json('meta_desc')->nullable();
+            $table->text('banner_img');
+            $table->json('title')->unique();
+            $table->json('slug')->unique();
             $table->json('description');
-            $table->text('gallery');
             $table->timestamps();
         });
     }
@@ -26,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('rabka_attractions');
+        Schema::dropIfExists('nfzs');
     }
 };
