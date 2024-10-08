@@ -14,7 +14,6 @@ return new class extends Migration
         Schema::create('testimonials', function (Blueprint $table) {
             $table->id();
             $table->json('name');
-            $table->json('source');
             $table->json('content');
             $table->integer('sort')->nullable();
             $table->timestamps();

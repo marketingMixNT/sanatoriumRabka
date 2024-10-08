@@ -4,10 +4,14 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Translatable\HasTranslations;
+
 
 class Offer extends Model
 {
     use HasFactory;
+    use HasTranslations;
+
 
     /**
      * The attributes that are mass assignable.
@@ -43,5 +47,14 @@ class Offer extends Model
         'description' => 'array',
         'published_at' => 'datetime',
         'published_end' => 'datetime',
+    ];
+
+    public $translatable = [
+        'meta_title',
+        'meta_desc',
+        'title',
+        'slug',
+        'description',
+        'short_desc'
     ];
 }

@@ -18,6 +18,12 @@ use Filament\Resources\Concerns\Translatable;
 
 class PrivacyPolicyResource extends Resource
 {
+    use Translatable;
+
+    public static function getTranslatableLocales(): array
+    {
+        return ['pl', 'en'];
+    }
    
     protected static ?string $model = PrivacyPolicy::class;
 

@@ -4,10 +4,14 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Translatable\HasTranslations;
+
 
 class Slide extends Model
 {
     use HasFactory;
+    use HasTranslations;
+
 
     /**
      * The attributes that are mass assignable.
@@ -35,5 +39,9 @@ class Slide extends Model
         'heading' => 'array',
         'text' => 'array',
         'button_text' => 'array',
+    ];
+
+    public $translatable = [
+        'alt','heading','text','button_text'
     ];
 }

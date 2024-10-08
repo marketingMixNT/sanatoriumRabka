@@ -4,10 +4,13 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Translatable\HasTranslations;
+
 
 class Attraction extends Model
 {
     use HasFactory;
+    use HasTranslations;
 
     /**
      * The attributes that are mass assignable.
@@ -28,5 +31,9 @@ class Attraction extends Model
     protected $casts = [
         'id' => 'integer',
         'name' => 'array',
+    ];
+
+    public $translatable = [
+        'name',
     ];
 }

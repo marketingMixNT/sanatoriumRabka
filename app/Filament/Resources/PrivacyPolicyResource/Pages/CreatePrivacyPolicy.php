@@ -8,5 +8,15 @@ use Filament\Resources\Pages\CreateRecord;
 
 class CreatePrivacyPolicy extends CreateRecord
 {
+    use CreateRecord\Concerns\Translatable;
+
     protected static string $resource = PrivacyPolicyResource::class;
+
+    // protected function getHeaderActions(): array
+    // {
+    //     return [
+    //         Actions\LocaleSwitcher::make(),
+
+    //     ];
+    // }
 }

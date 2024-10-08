@@ -13,11 +13,11 @@ class CreateNfz extends CreateRecord
 
     protected static string $resource = NfzResource::class;
 
-    protected function getHeaderActions(): array
-    {
-        return [
-            Actions\LocaleSwitcher::make(),
+    // protected function getHeaderActions(): array
+    // {
+    //     return [
+    //         Actions\LocaleSwitcher::make(),
 
-        ];
-    }
+    //     ];
+    // }
 }

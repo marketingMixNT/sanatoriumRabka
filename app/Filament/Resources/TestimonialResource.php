@@ -20,7 +20,12 @@ use App\Filament\Resources\TestimonialResource\RelationManagers;
 class TestimonialResource extends Resource
 {
 
-   
+    use Translatable;
+
+    public static function getTranslatableLocales(): array
+    {
+        return ['pl', 'en'];
+    }
 
   
     protected static ?string $model = Testimonial::class;
@@ -43,11 +48,7 @@ class TestimonialResource extends Resource
                     ->maxLength(255)
                     ->required(),
 
-                Forms\Components\TextInput::make('source')
-                    ->label('Źródło opini')
-                    ->minLength(3)
-                    ->maxLength(255)
-                    ->required(),
+               
 
                 Forms\Components\Textarea::make('content')
                     ->label('Treść opini')

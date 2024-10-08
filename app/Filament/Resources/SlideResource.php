@@ -17,8 +17,17 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Filament\Resources\SlideResource\RelationManagers;
 use Livewire\Features\SupportFileUploads\TemporaryUploadedFile;
 
+use Filament\Resources\Concerns\Translatable;
+
 class SlideResource extends Resource
 {
+
+    use Translatable;
+
+    public static function getTranslatableLocales(): array
+    {
+        return ['pl', 'en'];
+    }
     protected static ?string $model = Slide::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-photo';

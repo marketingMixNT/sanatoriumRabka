@@ -26,9 +26,18 @@ use App\Filament\Resources\OfferResource\RelationManagers;
 use Livewire\Features\SupportFileUploads\TemporaryUploadedFile;
 use Schmeits\FilamentCharacterCounter\Forms\Components\Textarea;
 use Schmeits\FilamentCharacterCounter\Forms\Components\TextInput;
+use Filament\Resources\Concerns\Translatable;
+
 
 class OfferResource extends Resource
 {
+
+    use Translatable;
+
+    public static function getTranslatableLocales(): array
+    {
+        return ['pl', 'en'];
+    }
     protected static ?string $model = Offer::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-sparkles';
