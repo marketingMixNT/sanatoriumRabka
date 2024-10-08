@@ -7,8 +7,14 @@ use App\Http\Controllers\OfferController;
 use App\Http\Controllers\RabkaController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\GalleryController;
+use App\Http\Controllers\NfzController;
 
 Route::get("/", HomeController::class)->name("home");
+
+Route::get("/nfz/{slug}", [NfzController::class, 'show'])->name("nfz.show");
+
+
+
 Route::get("/o-nas", AboutController::class)->name("about");
 Route::get("/galeria", GalleryController::class)->name("gallery");
 Route::get("/kontakt", ContactController::class)->name("contact");

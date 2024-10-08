@@ -23,7 +23,7 @@
             <x-lucide-facebook class="text-secondary-400 size-4 hover:text-primary-400 duration-300" />
         </a>
         <a href="https://www.instagram.com/sanatorium.cegielski/" target="_blank" rel="norefferrer nofollow"
-            aria-label="facebook">
+            aria-label="instagram">
             <x-lucide-instagram class="text-secondary-400 size-4 hover:text-primary-400 duration-300" />
         </a>
     </div>

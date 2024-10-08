@@ -8,5 +8,16 @@ use Filament\Resources\Pages\CreateRecord;
 
 class CreateNfz extends CreateRecord
 {
+
+    use CreateRecord\Concerns\Translatable;
+
     protected static string $resource = NfzResource::class;
+
+    protected function getHeaderActions(): array
+    {
+        return [
+            Actions\LocaleSwitcher::make(),
+
+        ];
+    }
 }

@@ -9,7 +9,7 @@
     @include('partials.favicon')
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
-    
+
 </head>
 
 <body class="bg-white font-text font-light h-full ">
@@ -17,7 +17,7 @@
 
 
     <x-nav.topbar />
-    <x-navbar />
+    <x-nav.navbar />
 
 
 
@@ -25,7 +25,7 @@
 
     <x-map />
     <x-footer />
-<x-mobile-buttons />
+    <x-mobile-buttons />
 
     <script src="https://wis.upperbooking.com/sanatoriumcegielskirabkazdroj/be-panel?locale=pl" async=""></script>
 </body>

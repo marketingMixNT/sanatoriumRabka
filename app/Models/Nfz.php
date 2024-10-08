@@ -4,10 +4,14 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Translatable\HasTranslations;
+
 
 class Nfz extends Model
 {
     use HasFactory;
+
+    use HasTranslations;
 
     /**
      * The attributes that are mass assignable.
@@ -35,5 +39,13 @@ class Nfz extends Model
         'title' => 'array',
         'slug' => 'array',
         'description' => 'array',
+    ];
+
+    public $translatable = [
+        'meta_title',
+        'meta_desc',
+        'title',
+        'slug',
+        'description'
     ];
 }

@@ -2,19 +2,38 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\NfzResource\Pages;
-use App\Filament\Resources\NfzResource\RelationManagers;
 use App\Models\Nfz;
 use Filament\Forms;
-use Filament\Forms\Form;
-use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Forms\Set;
+use Filament\Forms\Form;
 use Filament\Tables\Table;
+use Illuminate\Support\Str;
+use Filament\Resources\Resource;
+use Awcodes\Shout\Components\Shout;
+use Filament\Forms\Components\Tabs;
+use Livewire\Component as Livewire;
+use FilamentTiptapEditor\TiptapEditor;
+use Filament\Forms\Components\Component;
 use Illuminate\Database\Eloquent\Builder;
+use FilamentTiptapEditor\Enums\TiptapOutput;
+use App\Filament\Resources\NfzResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use App\Filament\Resources\NfzResource\RelationManagers;
+use Livewire\Features\SupportFileUploads\TemporaryUploadedFile;
+use Schmeits\FilamentCharacterCounter\Forms\Components\TextInput;
+use Filament\Resources\Concerns\Translatable;
+
 
 class NfzResource extends Resource
 {
+
+    use Translatable;
+
+    public static function getTranslatableLocales(): array
+    {
+        return ['pl', 'en'];
+    }
     protected static ?string $model = Nfz::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
@@ -26,29 +45,120 @@ class NfzResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\Textarea::make('meta_title')
-                    ->columnSpanFull(),
-                Forms\Components\Textarea::make('meta_desc')
-                    ->columnSpanFull(),
-                Forms\Components\Textarea::make('banner_img')
-                    ->required()
-                    ->columnSpanFull(),
-                Forms\Components\Textarea::make('title')
-                    ->required()
-                    ->columnSpanFull(),
-                Forms\Components\Textarea::make('slug')
-                    ->required()
-                    ->columnSpanFull(),
-                Forms\Components\Textarea::make('description')
-                    ->required()
-                    ->columnSpanFull(),
+
+                Tabs::make('Tabs')
+                    ->columnSpanFull()
+                    ->tabs(
+                        [
+
+
+                            // INFO
+                            Tabs\Tab::make('Główne informacje')
+                                ->icon('heroicon-o-information-circle')
+                                ->columns()
+                                ->schema([
+                                    Forms\Components\TextInput::make('title')
+                                        ->label('Nazwa strony')
+                                        ->unique(ignoreRecord: true)
+                                        ->minLength(3)
+                                        ->maxLength(255)
+                                        ->required()
+                                        ->live(debounce: 1000)
+                                        ->afterStateUpdated(fn(Set $set, ?string $state) => $set('slug', Str::slug($state))),
+
+                                    Forms\Components\TextInput::make('slug')
+                                        ->label('Slug')
+                                        ->required()
+                                        ->hint('Przyjazny adres url który wygeneruje się automatycznie')
+                                        ->readOnly(),
+
+                                    Forms\Components\FileUpload::make('banner_img')
+                                        ->label('Banner')
+                                        ->directory('banners')
+                                        ->getUploadedFileNameForStorageUsing(
+                                            fn(TemporaryUploadedFile $file): string => 'banner-' . now()->format('Ymd_His') . '.' . $file->getClientOriginalExtension()
+                                        )
+                                        ->image()
+                                        ->maxSize(8192)
+                                        ->optimize('webp')
+                                        ->imageEditor()
+                                        ->imageEditorAspectRatios([
+                                            null,
+                                            '16:9',
+                                            '4:3',
+                                            '1:1',
+                                        ])
+                                        ->required()
+                                        ->columnSpanFull(),
+                                ]),
+                            // CONTENT
+                            Tabs\Tab::make('Treść')
+                                ->icon('heroicon-o-information-circle')
+                                ->columns()
+                                ->schema([
+                                    TiptapEditor::make('description')->profile('default')
+                                        ->label("Treść")
+                                        ->output(TiptapOutput::Json)
+                                        ->maxContentWidth('5xl')
+                                        ->required()
+                                        ->columnSpanFull(),
+                                ]),
+                            // META
+                            Tabs\Tab::make('Meta')
+                                ->icon('heroicon-o-globe-alt')
+                                ->columns()
+                                ->schema([
+                                    Shout::make('info')
+                                        ->content('Tytuł oraz opis zostaną uzupełnione automatycznie jezeli ich nie podasz. Zachecamy jednak do zrobienia tego w celu lepszej optymalizacji')
+                                        ->type('info')
+                                        ->color('success')
+                                        ->columnSpanFull(),
+
+                                    TextInput::make('meta_title')
+                                        ->label('Tytuł Meta')
+                                        ->placeholder('Meta title to tytuł strony internetowej wyświetlany w wynikach wyszukiwarek i na kartach przeglądarki.')
+                                        ->characterLimit(60)
+                                        ->minLength(10)
+                                        ->maxLength(75)
+                                        ->live(debounce: 1000)
+                                        ->afterStateUpdated(function (Livewire $livewire, Component $component) {
+                                            $validate = $livewire->validateOnly($component->getStatePath());
+                                        })
+                                        ->columnSpanFull(),
+
+                                    TextInput::make('meta_desc')
+                                        ->label('Opis Meta')
+                                        ->placeholder('Meta description to krótki opis strony internetowej wyświetlany w wynikach wyszukiwarek.')
+                                        ->characterLimit(160)
+                                        ->minLength(10)
+                                        ->maxLength(180)
+                                        ->live(debounce: 1000)
+                                        ->afterStateUpdated(function (Livewire $livewire, Component $component) {
+                                            $validate = $livewire->validateOnly($component->getStatePath());
+                                        })
+                                        ->columnSpanFull(),
+                                ]),
+                        ]
+                    ),
+
             ]);
     }
 
     public static function table(Table $table): Table
     {
         return $table
+            // ->reorderable('sort')
+            // ->defaultSort('sort', 'desc')
             ->columns([
+                Tables\Columns\TextColumn::make('sort')
+                    ->label('#')
+                    ->sortable(),
+
+                Tables\Columns\ImageColumn::make('banner_img')
+                    ->label(label: 'Banner'),
+
+                Tables\Columns\TextColumn::make('title')
+                    ->label('Tytuł'),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
@@ -63,6 +173,7 @@ class NfzResource extends Resource
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

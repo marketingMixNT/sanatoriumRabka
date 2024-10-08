@@ -1,5 +1,8 @@
 @props(['href'])
 
-<li>
-  <a href="#" class="block px-4 py-3 hover:bg-gray-100 rounded-sm hover:text-primary-400 duration-300 text-fontDark">{{$slot}}</a>
-</li>
+
+
+<li><a href="{{$href}}"
+    class=" my-2 block border-b border-gray-100 py-1 text-fontDark hover:text-secondary-400 md:mx-2">
+    {{$slot}}
+  </a></li>

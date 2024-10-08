@@ -43,10 +43,18 @@ class RabkaAttractionResource extends Resource
     public static function table(Table $table): Table
     {
         return $table
+            ->reorderable('sort')
+            ->defaultSort('sort', 'desc')
             ->columns([
+                Tables\Columns\TextColumn::make('sort')
+                    ->label('#')
+                    ->sortable(),
 
-                Tables\Columns\TextColumn::make('meta_title')
-                ->label('Nazwa'),
+                Tables\Columns\ImageColumn::make('banner_img')
+                    ->label(label: 'Banner'),
+
+                Tables\Columns\TextColumn::make('title')
+                    ->label('Tytuł'),
 
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
