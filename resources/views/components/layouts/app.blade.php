@@ -15,7 +15,7 @@
 <body class="bg-white font-text font-light h-full ">
 
 
-
+    <x-preloader />
     <x-nav.topbar />
     <x-nav.navbar />
 

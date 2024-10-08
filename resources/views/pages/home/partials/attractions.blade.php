@@ -1,4 +1,4 @@
-<section class="py-20">
+<section class="pt-12 sm:pt-20 pb-6 sm:pb-10">
 
     <x-container>
           {{-- heading --}}
@@ -10,17 +10,15 @@
         <div class="mt-16 swiper attraction-gallery-swiper px-6">
             <div class=" swiper-wrapper">
 
-                {{-- @foreach ($attractions as $attraction) --}}
+                @foreach ($attractions as $attraction)
                 
-                <x-attraction-card />
-                <x-attraction-card />
-                <x-attraction-card />
-                <x-attraction-card />
+                <x-attraction-card :attraction="$attraction" />
+                
              
                
                
                
-                {{-- @endforeach --}}
+                @endforeach
             </div>
 
 

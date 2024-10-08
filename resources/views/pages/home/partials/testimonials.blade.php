@@ -1,44 +1,25 @@
-<section class="py-20">
+<section class="pt-6 pb-6 sm:py-16">
     <x-container>
 
         {{-- heading --}}
         <x-heading-horizontal subheading="Echo Satysfakcji" heading="Recenzje Gości: Nasza Duma i Inspiracja">
 
-            <x-text class="pt-10">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint, accusantium! Dolores
-                laudantium est
-                iure explicabo ullam unde saepe reprehenderit nisi!</x-text>
-            <x-rating source="google" rate="4.5" href="https://www.booking.com/hotel/pl/willa-pod-scieta-lipa.pl.html"
-                reviews="12 recenzji" />
+            <x-text class="sm:pt-10">Naszym priorytetem jest zapewnienie komfortu i wyjątkowych wrażeń. Z dumą dzielimy się
+                opiniami osób, które odwiedziły nasz hotel i doświadczyły naszej gościnności. Przeczytaj, co o nas
+                mówią, i przekonaj się, dlaczego warto nas odwiedzić!</x-text>
+            <x-rating source="google" rate="4.4" href="https://maps.app.goo.gl/an32GnmNGM2iRmn68"
+                reviews="294 recenzji" />
         </x-heading-horizontal>
 
         {{-- loop --}}
-        <div class="max-w-screen-2xl mt-16 swiper testimonials-swiper">
+        <div class="max-w-screen-2xl sm:mt-16 swiper testimonials-swiper">
             <div class="py-10  swiper-wrapper">
 
-                {{-- @foreach ($attractions as $attraction) --}}
-                <x-testimonial-card author="Marian Paździoch">Pobyt fantastyczny, jedzenie bardzo smaczne ,miła Pani
-                    Ewa obsługująca w kawiarni i super
-                    Wieczorki
-                    taneczne ,do muzyki na żywo w wykonaniu Ediego. Serdecznie polecam!</x-testimonial-card>
-                <x-testimonial-card author="Marian Paździoch">Pobyt fantastyczny, jedzenie bardzo smaczne ,miła Pani
-                    Ewa obsługująca w kawiarni i super
-                    Wieczorki
-                    taneczne ,do muzyki na żywo w wykonaniu Ediego. Serdecznie polecam!</x-testimonial-card>
-                <x-testimonial-card author="Marian Paździoch">Pobyt fantastyczny, jedzenie bardzo smaczne ,miła Pani
-                    Ewa obsługująca w kawiarni i super
-                    Wieczorki
-                    taneczne ,do muzyki na żywo w wykonaniu Ediego. Serdecznie polecam!</x-testimonial-card>
-                <x-testimonial-card author="Marian Paździoch">Pobyt fantastyczny, jedzenie bardzo smaczne ,miła Pani
-                    Ewa obsługująca w kawiarni i super
-                    Wieczorki
-                    taneczne ,do muzyki na żywo w wykonaniu Ediego. Serdecznie polecam!</x-testimonial-card>
+                @foreach ($testimonials as $testimonial)
+                <x-testimonial-card :testimonial="$testimonial" />
 
 
-
-
-
-
-                {{-- @endforeach --}}
+                @endforeach
             </div>
 
 

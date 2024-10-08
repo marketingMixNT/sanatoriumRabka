@@ -1,15 +1,17 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\NfzController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\OfferController;
 use App\Http\Controllers\RabkaController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\GalleryController;
-use App\Http\Controllers\NfzController;
+use App\Http\Controllers\OtherPageController;
 
 Route::get("/", HomeController::class)->name("home");
+
 
 Route::get("/nfz/{slug}", [NfzController::class, 'show'])->name("nfz.show");
 
@@ -23,3 +25,9 @@ Route::get('/oferta/{slug}', [OfferController::class, 'show'])->name('offer.show
 
 Route::get('/rabka-zdroj', [RabkaController::class, 'info'])->name('rabka.info');
 Route::get('/okoliczne-atrakcje', [RabkaController::class, 'attractions'])->name('rabka.attractions');
+
+
+
+
+Route::get("/polityka-prywatnosci", [OtherPageController::class,'privacyPolicy'])->name("privacy-policy");
+Route::get("/regulamin", [OtherPageController::class,'regulations'])->name("regulations");

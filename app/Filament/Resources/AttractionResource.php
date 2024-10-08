@@ -52,7 +52,7 @@ class AttractionResource extends Resource
                     ->label('Zdjęcie')
                     ->directory('attractions')
                     ->getUploadedFileNameForStorageUsing(
-                        fn(TemporaryUploadedFile $file): string => 'atrakcja-sanatorium-rabka-' . now()->format('Ymd_His') . '.' . $file->getClientOriginalExtension()
+                        fn(TemporaryUploadedFile $file): string => 'atrakcja-sanatorium-rabka-' . now()->format('H-i-s') . '-' . str_replace([' ', '.'], '', microtime()) . '.' . $file->getClientOriginalExtension()
                     )
                     ->image()
                     ->maxSize(4096)
@@ -64,6 +64,7 @@ class AttractionResource extends Resource
                         '4:3',
                         '1:1',
                     ])
+                    ->columnSpanFull()
                     ->required(),
             ]);
 

@@ -39,7 +39,6 @@ models:
 
   Testimonial:
     name: json
-    source: json
     content: json
     sort: integer nullable
 

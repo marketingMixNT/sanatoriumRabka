@@ -19,4 +19,4 @@
 <meta property="og:description" content="{{ $description }}">
 <meta property="og:url" content="https://www.sanatoriumrabka.pl">
 <meta property="og:type" content="website">
-<meta property="og:image" content="">
+<meta property="og:image" content="{{asset('assets/images/sanatorium-rabka-2.webp')}}">

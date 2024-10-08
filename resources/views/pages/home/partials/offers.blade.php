@@ -1,9 +1,9 @@
-<section class="pt-20 pb-10">
+<section class="py-12 sm:pt-20 pb-10">
     <x-container>
 
         {{-- heading --}}
         <x-heading-horizontal subheading="Oferty specjalne" heading="Sprawdź nasze oferty">
-            <x-text class="pt-10">
+            <x-text class="sm:pt-10">
                 Poznaj nasze starannie
                 dobrane oferty, które zapewnią Ci nie tylko
                 regenerację i relaks, ale także skuteczną opiekę zdrowotną. W Sanatorium Cegielski każdy pobyt to
@@ -12,7 +12,7 @@
 
 
         {{-- offers loop --}}
-        <div class=" flex flex-wrap justify-center items-center max-w-[1600px] mx-auto gap-10 mt-24">
+        <div class=" flex flex-wrap justify-center items-center max-w-[1600px] mx-auto gap-10 mt-12 sm:mt-24">
             @foreach ($offers as $offer)
 
             <x-offer-card :offer="$offer" href="/" />

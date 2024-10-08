@@ -1,11 +1,11 @@
-<footer class="bg-secondary-400 text-fontLight pt-16 py-8">
+<footer class="bg-secondary-400 text-fontLight pt-16 py-20 sm:py-8">
     <x-container class="max-w-screen-xl space-y-12">
         {{-- top --}}
         <div class="flex flex-col lg:flex-row justify-center items-center gap-12 lg:gap-32">
 
             <div class="lg:w-1/4 flex justify-center items-center">
 
-                <a href="/"><img src="{{asset('assets/logo/logo--light.png')}}" alt="" class="w-56"></a>
+                <a href="{{route('home')}}"><img src="{{asset('assets/logo/logo--light.png')}}" alt="" class="w-56"></a>
             </div>
 
             <div class="flex flex-col lg:flex-row j gap-16 lg:w-3/4">
@@ -14,7 +14,7 @@
                     <h2 class="text-2xl ">Kontakt</h2>
 
                  
-                        <x-nav.topbar-contact-box large href="/" text="ul. Na Banię 42 Rabka-Zdrój">
+                        <x-nav.topbar-contact-box large href="https://maps.app.goo.gl/eegopHXqSU4dnwK28" text="ul. Na Banię 42 Rabka-Zdrój">
                             <x-lucide-map-pin class="size-5 group-hover:text-primary-400 duration-300" />
                         </x-nav.topbar-contact-box>
             
@@ -49,8 +49,8 @@
         </div>
         {{-- links --}}
         <div class="flex flex-col xs:flex-row justify-center items-center gap-8 border-t border-b py-3">
-            <a href="/" class="text-sm hover:text-primary-400 duration-300">Polityka Prywatnosci</a>
-            <a href="/" class="text-sm hover:text-primary-400 duration-300">Regulamin</a>
+            <a href="{{route('privacy-policy')}}" class="text-sm hover:text-primary-400 duration-300">Polityka Prywatnosci</a>
+            <a href="{{route('regulations')}}" class="text-sm hover:text-primary-400 duration-300">Regulamin</a>
         </div>
         {{-- bottom --}}
         <div class="flex flex-col xs:flex-row gap-6 xs:gap-0 justify-between items-center">
