@@ -8,4 +8,6 @@
     @include('pages.home.partials.attractions')
     @include('pages.home.partials.testimonials')
 
+    <x-map />
+
 </x-layouts.app>

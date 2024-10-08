@@ -23,7 +23,7 @@
 
     {{ $slot }}
 
-    <x-map />
+   
     <x-footer />
     <x-mobile-buttons />
 

@@ -5,7 +5,7 @@
 
             <div class="lg:w-1/4 flex justify-center items-center">
 
-                <a href="{{route('home')}}"><img src="{{asset('assets/logo/logo--light.png')}}" alt="" class="w-56"></a>
+                <a href="{{route('home')}}"><img src="{{asset('assets/logo/logo--light.png')}}" alt="" class="w-48 sm:w-56"></a>
             </div>
 
             <div class="flex flex-col lg:flex-row j gap-16 lg:w-3/4">

@@ -4,8 +4,8 @@
     class="relative flex flex-col justify-center items-center h-[calc(80vh)]  lg:h-[calc(90vh)] 2xl:h-[calc(60vh)]  sm:mt-0 w-full bg-cover bg-center bg-fixed bg-gray-500 bg-blend-multiply text-fontLight"
     style="background-image: url({{$bgi}})">
     <!--HEADING-->
-    <span class="mb-4 text-sm 2xl:text-base font tracking-widest uppercase ">Hotel Jan</span>
-    <h1 class="text-center text-4xl sm:text-5xl md:text-7xl  tracking-wider uppercase font-heading ">
+    <span class="mb-4 text-sm 2xl:text-base font tracking-widest uppercase ">Sanatorium Rabka</span>
+    <h1 class="text-center text-4xl sm:text-5xl md:text-7xl  tracking-wider uppercase font-heading mb-24 ">
         {{$title}}
     </h1>
 
