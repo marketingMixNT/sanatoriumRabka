@@ -2,6 +2,10 @@
 
 namespace App\Providers;
 
+use App\Models\Offer;
+use App\Models\Slide;
+use App\Observers\OfferObserver;
+use App\Observers\SlideObserver;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -19,6 +23,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        Slide::observe(SlideObserver::class);
+        Offer::observe(OfferObserver::class);
     }
 }

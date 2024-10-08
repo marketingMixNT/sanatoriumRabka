@@ -13,6 +13,7 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Carbon;
 use Filament\Resources\Resource;
 use Awcodes\Shout\Components\Shout;
+use Filament\Forms\Components\Tabs;
 use Livewire\Component as Livewire;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Component;
@@ -23,6 +24,7 @@ use App\Filament\Resources\OfferResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Filament\Resources\OfferResource\RelationManagers;
 use Livewire\Features\SupportFileUploads\TemporaryUploadedFile;
+use Schmeits\FilamentCharacterCounter\Forms\Components\Textarea;
 use Schmeits\FilamentCharacterCounter\Forms\Components\TextInput;
 
 class OfferResource extends Resource
@@ -31,165 +33,170 @@ class OfferResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-sparkles';
 
-    protected static ?string $navigationGroup = 'Oferty';
-
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                // SEO
-                Section::make('SEO')
-                    ->icon('heroicon-o-globe-alt')
-                    ->collapsible()
-                    ->collapsed()
-                    ->description('Wprowadź meta title oraz meta description , które informują użytkowników o treści strony.')
-                    ->schema([
-                        Shout::make('info')
-                            ->content('Tytuł oraz opis zostaną uzupełnione automatycznie jezeli ich nie podasz. Zachecamy jednak do zrobienia tego w celu lepszej optymalizacji')
-                            ->type('info')
-                            ->color('success'),
 
-                        TextInput::make('meta_title')
-                            ->label('Tytuł Meta')
-                            ->placeholder('Meta title to tytuł strony internetowej wyświetlany w wynikach wyszukiwarek i na kartach przeglądarki.')
-                            ->characterLimit(60)
-                            ->minLength(10)
-                            ->maxLength(75)
-                            ->live(debounce: 1000)
-                            ->afterStateUpdated(function (Livewire $livewire, Component $component) {
-                                $validate = $livewire->validateOnly($component->getStatePath());
-                            })
-                            ->columnSpanFull(),
 
-                        TextInput::make('meta_desc')
-                            ->label('Opis Meta')
-                            ->placeholder('Meta description to krótki opis strony internetowej wyświetlany w wynikach wyszukiwarek.')
-                            ->characterLimit(160)
-                            ->minLength(10)
-                            ->maxLength(180)
-                            ->live(debounce: 1000)
-                            ->afterStateUpdated(function (Livewire $livewire, Component $component) {
-                                $validate = $livewire->validateOnly($component->getStatePath());
-                            })
-                            ->columnSpanFull(),
-                    ]),
-                Section::make('Tytuł oraz treść')
-                    ->icon('heroicon-o-pencil')
-                    ->description('Wprowadź tytuł oraz opisy')
-                    ->collapsible()
-                    ->collapsed()
-                    ->columns(2)
-                    ->schema([
-                        Forms\Components\TextInput::make('title')
-                            ->label('Tytuł')
-                            ->unique(ignoreRecord: true)
-                            ->required()
-                            ->minLength(3)
-                            ->maxLength(255)
-                            ->live(debounce: 1000)
-                            ->afterStateUpdated(fn(Set $set, ?string $state) => $set('slug', Str::slug($state))),
 
-                        Forms\Components\TextInput::make('slug')
-                            ->readonly()
-                            ->label('Slug')
-                            ->required()
-                            ->minLength(3)
-                            ->maxLength(255)
-                            ->helperText('Przyjazny adres url który wygeneruje się automatycznie na podstawie nazwy apartamentu.'),
+                Tabs::make('Tabs')
+                    ->columnSpanFull()
+                    ->tabs([
 
-                        RichEditor::make('short_desc')
-                            ->label('Krótki opis')
-                            ->toolbarButtons([
-                                'bold',
-                                'italic',
-                            ])
-                            ->required()
-                            ->columnSpanFull(),
+                        // CONTENT
+                        Tabs\Tab::make('Treść')
+                            ->icon('heroicon-o-pencil')
+                            ->columns()
+                            ->schema([
+                                Forms\Components\TextInput::make('title')
+                                    ->label('Tytuł')
+                                    ->unique(ignoreRecord: true)
+                                    ->required()
+                                    ->minLength(3)
+                                    ->maxLength(255)
+                                    ->live(debounce: 1000)
+                                    ->afterStateUpdated(fn(Set $set, ?string $state) => $set('slug', Str::slug($state))),
 
-                        RichEditor::make('description')
-                            ->label('Opis główny')
-                            ->toolbarButtons([
-                                'bold',
-                                'italic',
-                                'h2',
-                                'h3',
-                                'italic',
-                                'bulletList',
-                                'orderedList',
-                                'redo',
-                                'strike',
-                                'underline',
-                                'undo',
-                            ])
-                            ->required()
-                            ->columnSpanFull(),
-                    ]),
+                                Forms\Components\TextInput::make('slug')
+                                    ->readonly()
+                                    ->label('Slug')
+                                    ->required()
+                                    ->minLength(3)
+                                    ->maxLength(255)
+                                    ->helperText('Przyjazny adres url który wygeneruje się automatycznie na podstawie tytułu.'),
 
-                Section::make('Zdjęcia')
-                    ->icon('heroicon-o-information-circle')
-                    ->columns(2)
-                    ->collapsible()
-                    ->collapsed()
-                    ->description('Dodaj miniaturkę oraz zdjęcie baneru')
-                    ->schema([
+                               
 
-                        Forms\Components\FileUpload::make('thumbnail')
-                            ->label('Miniaturka')
-                            ->directory('offers-thumbnails')
-                            ->getUploadedFileNameForStorageUsing(
-                                fn(TemporaryUploadedFile $file): string => 'sanatorium-rabka-oferta-miniaturka' . now()->format('Ymd_His') . '.' . $file->getClientOriginalExtension()
-                            )
-                            ->image()
-                            ->maxSize(8192)
-                            ->optimize('webp')
-                            ->imageEditor()
-                            ->imageEditorAspectRatios([
-                                null,
-                                '16:9',
-                                '4:3',
-                                '1:1',
-                            ])
-                            ->required()
-                            ->columns(1),
+                                Textarea::make('short_desc')
+                                    ->label('Krótki opis')
+                                    ->required()
+                                    ->hint('Pojawi się na liście ofert')
+                                    ->columnSpanFull()
+                                    ->characterLimit(225),
 
-                        Forms\Components\FileUpload::make('banner_img')
-                            ->label('Banner')
-                            ->directory('offers-banners')
-                            ->getUploadedFileNameForStorageUsing(
-                                fn(TemporaryUploadedFile $file): string => 'sanatorium-rabka-oferta-baner' . now()->format('Ymd_His') . '.' . $file->getClientOriginalExtension()
-                            )
-                            ->image()
-                            ->maxSize(8192)
-                            ->optimize('webp')
-                            ->imageEditor()
-                            ->imageEditorAspectRatios([
-                                null,
-                                '16:9',
-                                '4:3',
-                                '1:1',
-                            ])
-                            ->required()
-                            ->columns(1),
+                                RichEditor::make('description')
+                                    ->label('Opis główny')
+                                    ->toolbarButtons([
+                                        'bold',
+                                        'italic',
+                                        'h2',
+                                        'h3',
+                                        'italic',
+                                        'bulletList',
+                                        'orderedList',
+                                        'redo',
+                                        'strike',
+                                        'underline',
+                                        'undo',
+                                    ])
+                                    ->required()
+                                    ->columnSpanFull(),
+                            ]),
 
-                    ]),
+                        // PHOTOS
+                        Tabs\Tab::make('Zdjęcia')
+                            ->icon('heroicon-o-camera')
+                            ->columns()
+                            ->schema([
 
-                Section::make('Publikacja')
-                    ->description('Wybierdz datę publikacji')
-                    ->icon('heroicon-o-clock')
-                    ->collapsible()
-                    ->collapsed()
-                    ->columns(2)
-                    ->schema([
-                        DateTimePicker::make('published_at')
-                            ->label('Data publikacji')
-                            ->columns(1)
-                            ->default(now())
-                            ->required(),
-                        DateTimePicker::make('published_end')
-                            ->label('Zakończenie publikacji')
-                            ->columns(1)
-                            ->default(now()->addMonths(3))
-                            ->required(),
+                                Forms\Components\FileUpload::make('banner_img')
+                                    ->label('Banner')
+                                    ->directory('offers-banners')
+
+                                    ->getUploadedFileNameForStorageUsing(
+                                        fn(TemporaryUploadedFile $file): string => 'sanatorium-rabka-oferta-baner' . now()->format('H-i-s') . '-' . str_replace([' ', '.'], '', microtime()) . '.' . $file->getClientOriginalExtension()
+                                    )
+                                    ->image()
+                                    ->maxSize(8192)
+                                    ->optimize('webp')
+                                    ->imageEditor()
+                                    ->columnSpanFull()
+                                    ->imageEditorAspectRatios([
+                                        null,
+                                        '16:9',
+                                        '4:3',
+                                        '1:1',
+                                    ])
+                                    ->required(),
+
+                                Forms\Components\FileUpload::make('thumbnail')
+                                    ->label('Miniaturka')
+                                    ->directory('offers-thumbnails')
+
+                                    ->getUploadedFileNameForStorageUsing(
+                                        fn(TemporaryUploadedFile $file): string => 'sanatorium-rabka-oferta-miniaturka' . now()->format('H-i-s') . '-' . str_replace([' ', '.'], '', microtime()) . '.' . $file->getClientOriginalExtension()
+                                    )
+                                    ->image()
+                                    ->maxSize(8192)
+                                    ->optimize('webp')
+                                    ->imageEditor()
+                                    ->columnSpanFull()
+                                    ->imageEditorAspectRatios([
+                                        null,
+                                        '16:9',
+                                        '4:3',
+                                        '1:1',
+                                    ])
+                                    ->required(),
+
+
+
+
+                            ]),
+
+                        // PUBLISHED
+                        Tabs\Tab::make('Publikacja')
+                            ->icon('heroicon-o-clock')
+                            ->columns()
+                            ->schema([
+                                DateTimePicker::make('published_at')
+                                    ->label('Data publikacji')
+                                    ->columns(1)
+                                    ->default(now())
+                                    ->required(),
+                                DateTimePicker::make('published_end')
+                                    ->label('Zakończenie publikacji')
+                                    ->columns(1)
+                                    ->default(now()->addMonths(3))
+                                    ->required(),
+                            ]),
+
+                        // META
+                        Tabs\Tab::make('Meta')
+                            ->icon('heroicon-o-globe-alt')
+                            ->columns()
+                            ->schema([
+                                Shout::make('info')
+                                    ->content('Tytuł oraz opis zostaną uzupełnione automatycznie jezeli ich nie podasz. Zachecamy jednak do zrobienia tego w celu lepszej optymalizacji')
+                                    ->type('info')
+                                    ->columnSpanFull()
+                                    ->color('success'),
+
+                                TextInput::make('meta_title')
+                                    ->label('Tytuł Meta')
+                                    ->placeholder('Meta title to tytuł strony internetowej wyświetlany w wynikach wyszukiwarek i na kartach przeglądarki.')
+                                    ->characterLimit(60)
+                                    ->minLength(10)
+                                    ->maxLength(75)
+                                    ->live(debounce: 1000)
+                                    ->afterStateUpdated(function (Livewire $livewire, Component $component) {
+                                        $validate = $livewire->validateOnly($component->getStatePath());
+                                    })
+                                    ->columnSpanFull(),
+
+                                TextInput::make('meta_desc')
+                                    ->label('Opis Meta')
+                                    ->placeholder('Meta description to krótki opis strony internetowej wyświetlany w wynikach wyszukiwarek.')
+                                    ->characterLimit(160)
+                                    ->minLength(10)
+                                    ->maxLength(180)
+                                    ->live(debounce: 1000)
+                                    ->afterStateUpdated(function (Livewire $livewire, Component $component) {
+                                        $validate = $livewire->validateOnly($component->getStatePath());
+                                    })
+                                    ->columnSpanFull(),
+                            ]),
 
                     ]),
             ]);
@@ -198,12 +205,12 @@ class OfferResource extends Resource
     public static function table(Table $table): Table
     {
         return $table
-        ->reorderable('sort')
+            ->reorderable('sort')
             ->defaultSort('published_at', 'desc')
             ->columns([
                 Tables\Columns\TextColumn::make('sort')
-                ->label('#')
-                ->sortable(),
+                    ->label('#')
+                    ->sortable(),
                 Tables\Columns\ImageColumn::make('thumbnail')
                     ->label('Miniaturka'),
                 Tables\Columns\TextColumn::make('title')
@@ -244,7 +251,7 @@ class OfferResource extends Resource
                         }
                     })
                     ->sortable(),
-                    Tables\Columns\TextColumn::make('created_at')
+                Tables\Columns\TextColumn::make('created_at')
                     ->label('Data utworzenia')
                     ->dateTime()
                     ->sortable()
