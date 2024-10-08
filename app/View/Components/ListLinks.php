@@ -24,10 +24,12 @@ class ListLinks extends Component
     public $nfz;
     public function __construct()
     {
-        $this->rooms = Room::all();
-        $this->offers = Offer::all();
-        $this->rehabilitations = Rehabilitation::all();
-        $this->nfz = Nfz::all();
+        $this->rooms = Room::select('title','slug')->get();
+
+
+        // $this->offers = Offer::select('title','slug')->get();
+        // $this->rehabilitations::select('title','slug')->get();
+        // $this->nfz = Nfz::select('title','slug')->get();
     }
 
     /**
@@ -36,10 +38,10 @@ class ListLinks extends Component
     public function render(): View|Closure|string
     {
         return view('components.nav.list-links', [
-            'offers' => $this->offers,
             "rooms" => $this->rooms,
-            "rehabilitations" => $this->rehabilitations,
-            "nfz" => $this->nfz,
+            // 'offers' => $this->offers,
+            // "rehabilitations" => $this->rehabilitations,
+            // "nfz" => $this->nfz,
 
         ]);
     }

@@ -5,9 +5,11 @@ namespace App\Providers;
 use App\Models\Offer;
 use App\Models\Slide;
 use App\Models\Attraction;
+use App\Models\Room;
 use App\Observers\OfferObserver;
 use App\Observers\SlideObserver;
 use App\Observers\AttractionObserver;
+use App\Observers\RoomObserver;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -28,5 +30,6 @@ class AppServiceProvider extends ServiceProvider
         Slide::observe(SlideObserver::class);
         Offer::observe(OfferObserver::class);
         Attraction::observe(AttractionObserver::class);
+        Room::observe(RoomObserver::class);
     }
 }

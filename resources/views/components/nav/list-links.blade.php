@@ -6,18 +6,18 @@
 
         <x-nav.dropdown title="Pokoje">
 
-            {{-- @foreach ($nfz as $page)
-            <x-nav.dropdown-item href="{{route('nfz.show', $page->slug)}}">{{$page->title}}
+            @foreach ($rooms as $room)
+            <x-nav.dropdown-item href="{{route('room.show', $room->slug)}}">{{$room->title}}
             </x-nav.dropdown-item>
-            @endforeach --}}
+            @endforeach
         </x-nav.dropdown>
 
         <x-nav.dropdown title="NFZ">
 
-            @foreach ($nfz as $page)
+            {{-- @foreach ($nfz as $page)
             <x-nav.dropdown-item href="{{route('nfz.show', $page->slug)}}">{{$page->title}}
             </x-nav.dropdown-item>
-            @endforeach
+            @endforeach --}}
         </x-nav.dropdown>
 
         <x-nav.dropdown title="Rehabilitacja">
