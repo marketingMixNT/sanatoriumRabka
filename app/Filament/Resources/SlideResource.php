@@ -10,6 +10,7 @@ use Filament\Tables\Table;
 use Illuminate\Support\Str;
 use Filament\Resources\Resource;
 use Awcodes\Shout\Components\Shout;
+use Filament\Forms\Components\Fieldset;
 use Illuminate\Database\Eloquent\Builder;
 use App\Filament\Resources\SlideResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
@@ -35,56 +36,71 @@ class SlideResource extends Resource
                     ->color('success')
                     ->columnSpanFull(),
 
-                Forms\Components\FileUpload::make('image')
-                    ->label('Zdjęcie')
-                    ->directory('slides')
-                    ->getUploadedFileNameForStorageUsing(
-                        fn(TemporaryUploadedFile $file): string => 'hotel-jan-' . now()->format('Ymd_His') . '.' . $file->getClientOriginalExtension()
-                    )
-                    ->image()
-                    ->maxSize(4096)
-                    ->optimize('webp')
-                    ->imageEditor()
-                    ->imageEditorAspectRatios([
-                        null,
-                        '16:9',
-                        '4:3',
-                        '1:1',
-                    ])
-                    ->required(),
+                // PHOTO
+                Fieldset::make('Zdjęcie')
+                    ->schema([
+                        Forms\Components\FileUpload::make('image')
+                            ->label('')
+                            ->directory('slides')
+                            ->getUploadedFileNameForStorageUsing(
+                                fn(TemporaryUploadedFile $file): string => 'sanatorium-rabka-' . now()->format('H-i-s') . '-' . str_replace([' ', '.'], '', microtime()) . '.' . $file->getClientOriginalExtension()
+                            )
+                            ->image()
+                            ->maxSize(4096)
+                            ->optimize('webp')
+                            ->imageEditor()
+                            ->columnSpanFull()
+                            ->imageEditorAspectRatios([
+                                null,
+                                '16:9',
+                                '4:3',
+                                '1:1',
+                            ])
+                            ->required(),
 
-                Forms\Components\TextInput::make('alt')
-                    ->label('Tekst alternatywny')
-                    ->required()
-                    ->minLength(3)
-                    ->maxLength(255)
-                    ->helperText('Opisz w jednym zdaniu co znajduje się na obrazku aby poprawić SEO'),
+                        Forms\Components\TextInput::make('alt')
+                            ->label('Tekst alternatywny')
+                            ->required()
+                            ->minLength(3)
+                            ->maxLength(255)
+                            ->helperText('Opisz w jednym zdaniu co znajduje się na obrazku aby poprawić SEO'),
+                    ]),
 
-                Forms\Components\TextInput::make('heading')
-                    ->label('Tytuł')
-                    ->columnSpanFull()
-                    ->minLength(3)
-                    ->maxLength(255)
-                    ->required(),
+                // CONTENT
+                Fieldset::make('Treść')
+                    ->schema([
+                        Forms\Components\TextInput::make('heading')
+                            ->label('Tytuł')
+                            ->columnSpanFull()
+                            ->minLength(3)
+                            ->maxLength(255)
+                            ->required(),
 
-                Forms\Components\Textarea::make('text')
-                    ->label('Treść')
-                    ->columnSpanFull()
-                    ->rows(5)
-                    ->required(),
-                    
-                    Forms\Components\TextInput::make('link')
-                    ->label('Link')
-                    ->columnSpanFull()
-                    ->url()
-                    ->required(),
-                    Forms\Components\TextInput::make('button_text')
-                    ->label('Tekst w przycisku')
-                    ->placeholder('np. zobacz')
-                    ->columnSpanFull()
-                    ->minLength(3)
-                    ->maxLength(255)
-                    ->required(),
+                        Forms\Components\Textarea::make('text')
+                            ->label('Tekst')
+                            ->columnSpanFull()
+                            ->rows(3)
+                            ->required(),
+                    ]),
+
+                // LINK & BUTTON
+                Fieldset::make('Treść')
+                    ->schema([
+                        Forms\Components\TextInput::make('link')
+                            ->label('Link')
+                            ->columnSpanFull()
+                            ->url()
+                            ->required(),
+                        Forms\Components\TextInput::make('button_text')
+                            ->label('Tekst w przycisku')
+                            ->placeholder('np. zobacz ofertę')
+                            ->columnSpanFull()
+                            ->minLength(3)
+                            ->maxLength(255)
+                            ->required(),
+                    ]),
+
+
 
             ]);
     }
@@ -127,6 +143,7 @@ class SlideResource extends Resource
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
