@@ -315,6 +315,6 @@ class OfferResource extends Resource
 
     public static function getLabel(): string
     {
-        return ('Pokój');
+        return ('Oferta');
     }
 }

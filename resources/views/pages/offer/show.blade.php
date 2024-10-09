@@ -1,8 +1,8 @@
-<x-layouts.app title="Oferty" description="oferty">
+<x-layouts.app title="{{$offer->getMetaTitle()}}" description="$offer->getMetaDesc()">
 
     {{-- header --}}
-    <x-header title="Oferty"
-        bgi="https://images.unsplash.com/photo-1726931598787-00b60840177c?q=80&w=4470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" />
+    <x-header title="{{$offer->title}}"
+        bgi="{{asset('storage/'.$offer->banner_img)}}" />
 
     {{-- section --}}
     <section class="py-12 lg:pt-24 pb-12">
@@ -44,7 +44,7 @@
 
 
 
-        <div
+        {{-- <div
             class="flex flex-col lg:flex-row justify-center items-center gap-x-16 pt-20 px-2 sm:w-[90%] md:w-full mx-auto">
 
             @foreach ($otherOffers as $offer)
@@ -53,7 +53,7 @@
 
             @endforeach
 
-        </div>
+        </div> --}}
     </section>
     <x-facebook-banner />
 </x-layouts.app>

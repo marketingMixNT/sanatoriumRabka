@@ -36,7 +36,7 @@
     <div class="relative z-0 w-full mb-5 group">
 
         <input wire:model.live.lazy="name" type="text" name="name" id="name"
-            class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b border-accent-400 appearance-none  focus:outline-none focus:ring-0 focus:border-secondary-200 peer"
+            class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b border-accent-400 appearance-none  focus:outline-none focus:ring-0 focus:border-secondary-400 peer"
             placeholder=" " required />
         <label for="name"
             class="peer-focus:font-medium absolute text-sm text-gray-500  duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-secondary-400 peer-focus:dark:text-secondary-400 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Imię i nazwisko</label>
@@ -49,7 +49,7 @@
     <div class="relative z-0 w-full mb-5 group">
 
         <input wire:model.live.lazy="phone" type="tel" name="phone" id="phone"
-            class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b border-accent-400 appearance-none  focus:outline-none focus:ring-0 focus:border-secondary-200 peer"
+            class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b border-accent-400 appearance-none  focus:outline-none focus:ring-0 focus:border-secondary-400 peer"
             placeholder=" " required />
         <label for="phone"
             class="peer-focus:font-medium absolute text-sm text-gray-500  duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-secondary-400 peer-focus:dark:text-secondary-400 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Telefon</label>
@@ -61,7 +61,7 @@
     <div class="relative z-0 w-full mb-5 group">
 
         <input wire:model.live.lazy="email" type="email" name="email" id="email"
-            class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b border-accent-400 appearance-none  focus:outline-none focus:ring-0 focus:border-secondary-200 peer"
+            class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b border-accent-400 appearance-none  focus:outline-none focus:ring-0 focus:border-secondary-400 peer"
             placeholder=" " required />
         <label for="email"
             class="peer-focus:font-medium absolute text-sm text-gray-500  duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-secondary-400 peer-focus:dark:text-secondary-400 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Email</label>
@@ -70,15 +70,15 @@
         @enderror
     </div>
     {{-- message --}}
+   
     <div class="relative z-0 w-full mb-5 group">
 
-
-        <textarea wire:model.live.lazy="content" name="content" id="content"
-            class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-b border-accent-400 appearance-none  focus:outline-none focus:ring-0 focus:border-secondary-200 peer min-h-[200px] max-h-[200px]"
-            placeholder=" " required></textarea>
-        <label for="content"
-            class="peer-focus:font-medium absolute text-sm text-gray-500  duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-secondary-400 peer-focus:dark:text-secondary-400 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 ">Wiadomość</label>
-        @error('content')
+        <textarea wire:model.live.lazy="message"  name="message" id="message"
+            class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b border-accent-400 appearance-none  focus:outline-none focus:ring-0 focus:border-secondary-400 peer min-h-40 max-h-72"
+            placeholder=" " required ></textarea>
+        <label for="email"
+            class="peer-focus:font-medium absolute text-sm text-gray-500  duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-secondary-400 peer-focus:dark:text-secondary-400 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Wiadomość</label>
+        @error('message')
         <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
         @enderror
     </div>
@@ -95,7 +95,7 @@
         </svg>Wyślij</button>
 </form>
 
-<script src="https://www.google.com/recaptcha/api.js?render={{ env('CAPTCHA_SITE_KEY') }}"></script>
+{{-- <script src="https://www.google.com/recaptcha/api.js?render={{ env('CAPTCHA_SITE_KEY') }}"></script>
 <script>
     function handle(e) {
         grecaptcha.ready(function() {
@@ -107,4 +107,4 @@
                 });
         })
     }
-</script>
+</script> --}}

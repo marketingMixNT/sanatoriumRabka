@@ -49,6 +49,25 @@ class Offer extends Model
         'published_end' => 'datetime',
     ];
 
+
+    public function getMetaTitle(): string
+    {
+        if ($this->meta_title) {
+            return $this->meta_title;
+        } else {
+            return str_replace(['"', "'"], '', $this->title) . " | Sanatorium Rabka";
+        }
+    }
+
+    public function getMetaDesc(): string
+    {
+        if ($this->meta_desc) {
+            return $this->meta_desc;
+        } else {
+            return substr(strip_tags($this->short_desc), 0, 150);
+        }
+    }
+
     public $translatable = [
         'meta_title',
         'meta_desc',
