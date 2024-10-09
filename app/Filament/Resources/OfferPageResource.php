@@ -35,7 +35,7 @@ class OfferPageResource extends Resource
     }
     protected static ?string $model = OfferPage::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-document-text';
 
 
     protected static ?string $navigationGroup = 'Oferty';
@@ -158,7 +158,7 @@ class OfferPageResource extends Resource
                 Tables\Columns\ImageColumn::make('banner_img')
                     ->label(label: 'Banner'),
 
-                Tables\Columns\TextColumn::make('title')
+                Tables\Columns\TextColumn::make('page_title')
                     ->label('Tytuł'),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
@@ -210,6 +210,6 @@ class OfferPageResource extends Resource
 
     public static function getLabel(): string
     {
-        return ('Strony');
+        return ('Strona');
     }
 }

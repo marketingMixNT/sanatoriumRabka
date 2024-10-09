@@ -7,11 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 use Spatie\Translatable\HasTranslations;
 
 
-class Nfz extends Model
+class NfzPage extends Model
 {
     use HasFactory;
 
     use HasTranslations;
+
 
     /**
      * The attributes that are mass assignable.
@@ -22,10 +23,11 @@ class Nfz extends Model
         'meta_title',
         'meta_desc',
         'banner_img',
-        'title',
+        'page_title',
         'slug',
         'heading',
-        'description',
+        'content',
+        'sort',
     ];
 
     /**
@@ -37,12 +39,11 @@ class Nfz extends Model
         'id' => 'integer',
         'meta_title' => 'array',
         'meta_desc' => 'array',
-        'title' => 'array',
+        'page_title' => 'array',
         'slug' => 'array',
         'heading' => 'array',
-        'description' => 'array',
+        'content' => 'array',
     ];
-
 
     public $translatable = [
         'meta_title',

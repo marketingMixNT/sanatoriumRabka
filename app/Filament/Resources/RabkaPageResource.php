@@ -6,10 +6,10 @@ use Filament\Forms;
 use Filament\Tables;
 use Filament\Forms\Set;
 use Filament\Forms\Form;
+use App\Models\RabkaPage;
 use Filament\Tables\Table;
 use Illuminate\Support\Str;
 use Filament\Resources\Resource;
-use App\Models\RehabilitationPage;
 use Filament\Forms\Components\Tabs;
 use Livewire\Component as Livewire;
 use FilamentTiptapEditor\TiptapEditor;
@@ -17,14 +17,14 @@ use Filament\Forms\Components\Component;
 use Illuminate\Database\Eloquent\Builder;
 use FilamentTiptapEditor\Enums\TiptapOutput;
 use Filament\Resources\Concerns\Translatable;
+use App\Filament\Resources\RabkaPageResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
-use App\Filament\Resources\RehabilitationPageResource\Pages;
+use App\Filament\Resources\RabkaPageResource\RelationManagers;
 use Livewire\Features\SupportFileUploads\TemporaryUploadedFile;
 use Schmeits\FilamentCharacterCounter\Forms\Components\TextInput;
-use App\Filament\Resources\RehabilitationPageResource\RelationManagers;
 
 
-class RehabilitationPageResource extends Resource
+class RabkaPageResource extends Resource
 {
     use Translatable;
 
@@ -32,11 +32,11 @@ class RehabilitationPageResource extends Resource
     {
         return ['pl', 'en'];
     }
-    protected static ?string $model = RehabilitationPage::class;
+    protected static ?string $model = RabkaPage::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-document-text';
 
-    protected static ?string $navigationGroup = 'Rehabilitacja';
+    protected static ?string $navigationGroup = 'Rabka Zdrój';
 
     public static function form(Form $form): Form
     {
@@ -146,6 +146,8 @@ class RehabilitationPageResource extends Resource
     public static function table(Table $table): Table
     {
         return $table
+        ->reorderable('sort')
+        ->defaultSort('sort', 'desc')
         ->columns([
             Tables\Columns\TextColumn::make('sort')
                 ->label('#')
@@ -189,9 +191,9 @@ class RehabilitationPageResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListRehabilitationPages::route('/'),
-            'create' => Pages\CreateRehabilitationPage::route('/create'),
-            'edit' => Pages\EditRehabilitationPage::route('/{record}/edit'),
+            'index' => Pages\ListRabkaPages::route('/'),
+            'create' => Pages\CreateRabkaPage::route('/create'),
+            'edit' => Pages\EditRabkaPage::route('/{record}/edit'),
         ];
     }
 
@@ -206,6 +208,6 @@ class RehabilitationPageResource extends Resource
 
     public static function getLabel(): string
     {
-        return ('Strony');
+        return ('Strona');
     }
 }

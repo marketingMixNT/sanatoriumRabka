@@ -4,10 +4,13 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Translatable\HasTranslations;
 
-class RabkaAttractions extends Model
+
+class RabkaPage extends Model
 {
     use HasFactory;
+    use HasTranslations;
 
     /**
      * The attributes that are mass assignable.
@@ -18,9 +21,11 @@ class RabkaAttractions extends Model
         'meta_title',
         'meta_desc',
         'banner_img',
+        'page_title',
+        'slug',
         'heading',
-        'subheading',
-        'description',
+        'content',
+        'sort',
     ];
 
     /**
@@ -32,8 +37,18 @@ class RabkaAttractions extends Model
         'id' => 'integer',
         'meta_title' => 'array',
         'meta_desc' => 'array',
+        'page_title' => 'array',
+        'slug' => 'array',
         'heading' => 'array',
-        'subheading' => 'array',
-        'description' => 'array',
+        'content' => 'array',
+    ];
+
+    public $translatable = [
+        'meta_title',
+        'meta_desc',
+        'page_title',
+        'slug',
+        'heading',
+        'content'
     ];
 }

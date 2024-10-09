@@ -18,28 +18,22 @@ Route::get("/o-nas", AboutController::class)->name("about");
 
 Route::get('/pokoje/{slug}',[RoomController::class,'show'])->name('room.show');
 
-Route::get("/nfz/{slug}", [NfzController::class, 'show'])->name("nfz.show");
+Route::get("/nfz/{slug}", [NfzController::class, 'page'])->name("nfz.page");
 
 Route::get("/rehabilitacja/zabiegi", [RehabilitationController::class, 'treatments'])->name("rehabilitation.treatments");
 Route::get("/rehabilitacja/{slug}", [RehabilitationController::class, 'page'])->name("rehabilitation.page");
 
-
 Route::get("/galeria", GalleryController::class)->name("gallery");
+
+Route::get('/rabka-zdroj', [RabkaController::class, 'index'])->name('rabka');
+Route::get('/rabka-zdroj/{slug}', [RabkaController::class, 'page'])->name('rabka.page');
+
 
 Route::get("/oferty/{slug}", [OfferController::class, 'page'])->name("offer.page");
 Route::get('/oferta/{slug}', [OfferController::class, 'show'])->name('offer.show');
 
-
-
-
 Route::get("/kontakt", ContactController::class)->name("contact");
 
-
-Route::get('/rabka-zdroj', [RabkaController::class, 'info'])->name('rabka.info');
-Route::get('/okoliczne-atrakcje', [RabkaController::class, 'attractions'])->name('rabka.attractions');
-
-
-
-
 Route::get("/polityka-prywatnosci", [OtherPageController::class,'privacyPolicy'])->name("privacy-policy");
+
 Route::get("/regulamin", [OtherPageController::class,'regulations'])->name("regulations");

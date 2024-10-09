@@ -131,9 +131,6 @@ class SlideResource extends Resource
 
                 Tables\Columns\TextColumn::make('heading')
                     ->label('Nagłówek')
-                    ->description(function (Slide $record) {
-                        return Str::limit(strip_tags($record->text), 40);
-                    })
                     ->searchable(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->label('Data utworzenia')

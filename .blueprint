@@ -1,7 +1,7 @@
 created:
-    - database/factories/TreatmentFactory.php
-    - database/migrations/2024_10_09_111447_create_treatments_table.php
-    - app/Models/Treatment.php
+    - database/factories/NfzPageFactory.php
+    - database/migrations/2024_10_09_130605_create_nfz_pages_table.php
+    - app/Models/NfzPage.php
 models:
     Attraction: { name: longtext, image: text, sort: 'integer nullable default:NULL' }
     Gallery: { category: longtext, images: text, sort: 'integer nullable default:NULL' }
@@ -21,3 +21,5 @@ models:
     OfferPage: { meta_title: 'json nullable', meta_desc: 'json nullable', banner_img: text, page_title: 'json unique', slug: 'json unique', header: json, content: json }
     RehabilitationPage: { meta_title: json, meta_desc: json, banner_img: text, page_title: 'json unique', slug: 'json unique', heading: json, content: json }
     Treatment: { name: json, thumbnail: json, description: json, price: 'integer nullable', indications: json, sort: 'integer nullable' }
+    RabkaPage: { meta_title: 'json nullable', meta_desc: 'json nullable', banner_img: text, page_title: 'json unique', slug: 'json unique', heading: json, content: json, sort: 'integer null' }
+    NfzPage: { meta_title: 'json nullable', meta_desc: 'json nullable', banner_img: text, page_title: 'json unique', slug: 'json unique', heading: json, content: json, sort: 'integer null' }

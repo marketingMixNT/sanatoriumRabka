@@ -78,8 +78,7 @@ class TestimonialResource extends Resource
                     ->sortable()
                     ->searchable(),
 
-                Tables\Columns\TextColumn::make('source')
-                    ->label('Źródło opini'),
+                
                 Tables\Columns\TextColumn::make('created_at')
                     ->label('Data utworzenia')
                     ->dateTime()

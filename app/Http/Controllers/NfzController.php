@@ -2,16 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Nfz;
+
+use App\Models\NfzPage;
 use Illuminate\Http\Request;
 
 class NfzController extends Controller
 {
-    public function show($slug)
+    public function page($slug)
     {
 
-        $page = Nfz::where('slug->pl', $slug)->first();
+        $page = NfzPage::where('slug->pl', $slug)->first();
 
-        return view('pages.nfz.show', compact('page'));
+        return view('pages.nfz.page', compact('page'));
     }
 }

@@ -1,8 +1,10 @@
 models:
-   Treatment:
-    name: json
-    thumbnail: json
-    description: json
-    price: integer nullable
-    indications: json
-    sort: integer nullable
+   NfzPage:
+    meta_title: json nullable
+    meta_desc: json nullable
+    banner_img: text
+    page_title: json unique
+    slug: json unique
+    heading: json
+    content: json
+    sort: integer null

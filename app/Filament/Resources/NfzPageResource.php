@@ -2,30 +2,30 @@
 
 namespace App\Filament\Resources;
 
-use App\Models\Nfz;
 use Filament\Forms;
 use Filament\Tables;
+use App\Models\NfzPage;
 use Filament\Forms\Set;
 use Filament\Forms\Form;
 use Filament\Tables\Table;
 use Illuminate\Support\Str;
 use Filament\Resources\Resource;
-use Awcodes\Shout\Components\Shout;
 use Filament\Forms\Components\Tabs;
 use Livewire\Component as Livewire;
 use FilamentTiptapEditor\TiptapEditor;
 use Filament\Forms\Components\Component;
 use Illuminate\Database\Eloquent\Builder;
 use FilamentTiptapEditor\Enums\TiptapOutput;
-use App\Filament\Resources\NfzResource\Pages;
+use Filament\Resources\Concerns\Translatable;
+use App\Filament\Resources\NfzPageResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
-use App\Filament\Resources\NfzResource\RelationManagers;
+use App\Filament\Resources\NfzPageResource\RelationManagers;
 use Livewire\Features\SupportFileUploads\TemporaryUploadedFile;
 use Schmeits\FilamentCharacterCounter\Forms\Components\TextInput;
-use Filament\Resources\Concerns\Translatable;
 
 
-class NfzResource extends Resource
+
+class NfzPageResource extends Resource
 {
 
     use Translatable;
@@ -34,10 +34,10 @@ class NfzResource extends Resource
     {
         return ['pl', 'en'];
     }
-    protected static ?string $model = Nfz::class;
+    protected static ?string $model = NfzPage::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
+    protected static ?string $navigationIcon = 'heroicon-o-document-text';
 
     protected static ?string $navigationGroup = 'NFZ';
 
@@ -57,7 +57,7 @@ class NfzResource extends Resource
                                 ->icon('heroicon-o-information-circle')
                                 ->columns()
                                 ->schema([
-                                    Forms\Components\TextInput::make('title')
+                                    Forms\Components\TextInput::make('page_title')
                                         ->label('Nazwa strony')
                                         ->unique(ignoreRecord: true)
                                         ->minLength(3)
@@ -101,7 +101,7 @@ class NfzResource extends Resource
                                 ->icon('heroicon-o-information-circle')
                                 ->columns()
                                 ->schema([
-                                    TiptapEditor::make('description')->profile('default')
+                                    TiptapEditor::make('content')->profile('default')
                                         ->label("Treść")
                                         ->output(TiptapOutput::Json)
                                         ->maxContentWidth('5xl')
@@ -149,8 +149,8 @@ class NfzResource extends Resource
     public static function table(Table $table): Table
     {
         return $table
-            // ->reorderable('sort')
-            // ->defaultSort('sort', 'desc')
+            ->reorderable('sort')
+            ->defaultSort('sort', 'desc')
             ->columns([
                 Tables\Columns\TextColumn::make('sort')
                     ->label('#')
@@ -159,7 +159,7 @@ class NfzResource extends Resource
                 Tables\Columns\ImageColumn::make('banner_img')
                     ->label(label: 'Banner'),
 
-                Tables\Columns\TextColumn::make('title')
+                Tables\Columns\TextColumn::make('page_title')
                     ->label('Tytuł'),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
@@ -170,6 +170,7 @@ class NfzResource extends Resource
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
+
             ->filters([
                 //
             ])
@@ -194,11 +195,12 @@ class NfzResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListNfzs::route('/'),
-            'create' => Pages\CreateNfz::route('/create'),
-            'edit' => Pages\EditNfz::route('/{record}/edit'),
+            'index' => Pages\ListNfzPages::route('/'),
+            'create' => Pages\CreateNfzPage::route('/create'),
+            'edit' => Pages\EditNfzPage::route('/{record}/edit'),
         ];
     }
+
 
     public static function getNavigationLabel(): string
     {
@@ -211,6 +213,6 @@ class NfzResource extends Resource
 
     public static function getLabel(): string
     {
-        return ('Strony');
+        return ('Strona');
     }
 }

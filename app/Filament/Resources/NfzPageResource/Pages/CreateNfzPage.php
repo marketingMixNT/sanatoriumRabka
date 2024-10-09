@@ -1,17 +1,17 @@
 <?php
 
-namespace App\Filament\Resources\NfzResource\Pages;
+namespace App\Filament\Resources\NfzPageResource\Pages;
 
-use App\Filament\Resources\NfzResource;
+use App\Filament\Resources\NfzPageResource;
 use Filament\Actions;
 use Filament\Resources\Pages\CreateRecord;
 
-class CreateNfz extends CreateRecord
+class CreateNfzPage extends CreateRecord
 {
 
     use CreateRecord\Concerns\Translatable;
 
-    protected static string $resource = NfzResource::class;
+    protected static string $resource = NfzPageResource::class;
 
     // protected function getHeaderActions(): array
     // {

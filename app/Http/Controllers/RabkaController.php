@@ -2,21 +2,24 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\RabkaPage;
 use Illuminate\Http\Request;
 use App\Models\RabkaAttraction;
 
 class RabkaController extends Controller
 {
-    public function info()
+    public function index()
     {
-        return view('pages.rabka.info');
+        return view('pages.rabka.index');
     }
-    public function attractions()
+
+    public function page($slug)
     {
+        $page = RabkaPage::where('slug->pl', $slug)->first();
 
-        $attractions = RabkaAttraction::all();
 
-       
-        return view('pages.rabka.attractions',compact('attractions'));
+
+        return view('pages.rabka.page', compact('page'));
     }
+   
 }

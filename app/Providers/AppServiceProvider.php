@@ -2,15 +2,25 @@
 
 namespace App\Providers;
 
+use App\Models\Room;
 use App\Models\Offer;
 use App\Models\Slide;
+use App\Models\Gallery;
+use App\Models\NfzPage;
+use App\Models\OfferPage;
+use App\Models\RabkaPage;
 use App\Models\Attraction;
-use App\Models\Room;
+use App\Observers\RoomObserver;
 use App\Observers\OfferObserver;
 use App\Observers\SlideObserver;
+use App\Models\RehabilitationPage;
+use App\Observers\GalleryObserver;
+use App\Observers\NfzPageObserver;
+use App\Observers\OfferPageObserver;
+use App\Observers\RabkaPageObserver;
 use App\Observers\AttractionObserver;
-use App\Observers\RoomObserver;
 use Illuminate\Support\ServiceProvider;
+use App\Observers\RehabilitationPageObserver;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -27,9 +37,14 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        Slide::observe(SlideObserver::class);
-        Offer::observe(OfferObserver::class);
         Attraction::observe(AttractionObserver::class);
+        Gallery::observe(GalleryObserver::class);
+        NfzPage::observe(NfzPageObserver::class);
+        Offer::observe(OfferObserver::class);
+        OfferPage::observe(OfferPageObserver::class);
+        RabkaPage::observe(RabkaPageObserver::class);
+        RehabilitationPage::observe(RehabilitationPageObserver::class);
         Room::observe(RoomObserver::class);
+        Slide::observe(SlideObserver::class);
     }
 }

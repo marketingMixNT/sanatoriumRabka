@@ -11,15 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('nfzs', function (Blueprint $table) {
+        Schema::create('rabka_pages', function (Blueprint $table) {
             $table->id();
-            $table->json('meta_title');
-            $table->json('meta_desc');
+            $table->json('meta_title')->nullable();
+            $table->json('meta_desc')->nullable();
             $table->text('banner_img');
-            $table->json('title')->unique();
+            $table->json('page_title')->unique();
             $table->json('slug')->unique();
             $table->json('heading');
-            $table->json('description');
+            $table->json('content');
+            $table->integer('sort')->nullable();
             $table->timestamps();
         });
     }
@@ -29,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('nfzs');
+        Schema::dropIfExists('rabka_pages');
     }
 };

@@ -1,5 +1,5 @@
 <section
-    class="py-12 sm:py-16 bg-cover bg-center bg-gray-600 bg-blend-multiply bg-no-repeat bg-fixed " style="background-image: url({{asset('assets/images/sanatorium-rabka-1.webp')}})">
+    class="py-12 sm:py-16 lg:py-24 bg-cover bg-center bg-gray-600 bg-blend-multiply bg-no-repeat bg-fixed " style="background-image: url({{asset('assets/images/sanatorium-rabka-1.webp')}})">
 
 
     <div class="max-w-screen-xl flex flex-col justify-center items-center gap-16 text-white py-10 mx-auto">
