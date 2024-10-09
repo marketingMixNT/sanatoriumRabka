@@ -14,13 +14,11 @@ use App\Http\Controllers\RoomController;
 Route::get("/", HomeController::class)->name("home");
 Route::get("/o-nas", AboutController::class)->name("about");
 Route::get('/pokoje/{slug}',[RoomController::class,'show'])->name('room.show');
-
-
 Route::get("/nfz/{slug}", [NfzController::class, 'show'])->name("nfz.show");
-
-
-
 Route::get("/galeria", GalleryController::class)->name("gallery");
+
+
+
 Route::get("/kontakt", ContactController::class)->name("contact");
 Route::get("/oferty", [OfferController::class, 'index'])->name("offer.index");
 Route::get('/oferta/{slug}', [OfferController::class, 'show'])->name('offer.show');

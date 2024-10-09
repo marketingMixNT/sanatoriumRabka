@@ -13,14 +13,21 @@ use App\Filament\Resources\GalleryResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Filament\Resources\GalleryResource\RelationManagers;
 use Livewire\Features\SupportFileUploads\TemporaryUploadedFile;
+use Filament\Resources\Concerns\Translatable;
+
 
 class GalleryResource extends Resource
 {
+    use Translatable;
+
+    public static function getTranslatableLocales(): array
+    {
+        return ['pl', 'en'];
+    }
     protected static ?string $model = Gallery::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-camera';
 
-    protected static ?string $navigationGroup = 'Galeria';
 
     public static function form(Form $form): Form
     {
@@ -42,12 +49,10 @@ class GalleryResource extends Resource
                     ->appendFiles()
                     ->image()
                     ->reorderable()
-                    ->hint('Galeria musi mieć co najmniej 5 zdjęć')
                     ->maxSize(8192)
                     ->optimize('webp')
                     ->imageEditor()
-                    ->minFiles(5)
-                    ->maxFiles(20)
+                    ->maxFiles(12)
                     ->panelLayout('grid')
                     ->imageEditorAspectRatios([
                         null,
