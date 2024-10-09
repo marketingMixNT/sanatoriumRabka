@@ -13,11 +13,12 @@ return new class extends Migration
     {
         Schema::create('nfzs', function (Blueprint $table) {
             $table->id();
-            $table->json('meta_title')->nullable();
-            $table->json('meta_desc')->nullable();
+            $table->json('meta_title');
+            $table->json('meta_desc');
             $table->text('banner_img');
             $table->json('title')->unique();
             $table->json('slug')->unique();
+            $table->json('heading');
             $table->json('description');
             $table->timestamps();
         });

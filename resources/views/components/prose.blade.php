@@ -1,0 +1,2 @@
+<div
+class="prose max-w-full prose-table:table-auto prose-table:w-full prose-table:border prose-table:border-gray-200 prose-th:bg-gray-100 prose-th:border prose-th:border-gray-200 prose-th:px-4 prose-th:py-2 prose-th:font-semibold prose-td:border prose-td:border-gray-200 prose-td:px-4 prose-td:py-2 prose-tr:even:bg-gray-50 text-inherit prose-strong:text-inherit">{{$slot}}</div>

@@ -24,6 +24,7 @@ class Nfz extends Model
         'banner_img',
         'title',
         'slug',
+        'heading',
         'description',
     ];
 
@@ -38,14 +39,17 @@ class Nfz extends Model
         'meta_desc' => 'array',
         'title' => 'array',
         'slug' => 'array',
+        'heading' => 'array',
         'description' => 'array',
     ];
+
 
     public $translatable = [
         'meta_title',
         'meta_desc',
         'title',
         'slug',
+        'heading',
         'description'
     ];
 }

@@ -72,6 +72,11 @@ class NfzResource extends Resource
                                         ->hint('Przyjazny adres url który wygeneruje się automatycznie')
                                         ->readOnly(),
 
+                                    Forms\Components\TextInput::make('heading')
+                                        ->label('Nagłówek')
+                                        ->required(),
+
+
                                     Forms\Components\FileUpload::make('banner_img')
                                         ->label('Banner')
                                         ->directory('banners')
@@ -108,11 +113,6 @@ class NfzResource extends Resource
                                 ->icon('heroicon-o-globe-alt')
                                 ->columns()
                                 ->schema([
-                                    Shout::make('info')
-                                        ->content('Tytuł oraz opis zostaną uzupełnione automatycznie jezeli ich nie podasz. Zachecamy jednak do zrobienia tego w celu lepszej optymalizacji')
-                                        ->type('info')
-                                        ->color('success')
-                                        ->columnSpanFull(),
 
                                     TextInput::make('meta_title')
                                         ->label('Tytuł Meta')
@@ -124,7 +124,8 @@ class NfzResource extends Resource
                                         ->afterStateUpdated(function (Livewire $livewire, Component $component) {
                                             $validate = $livewire->validateOnly($component->getStatePath());
                                         })
-                                        ->columnSpanFull(),
+                                        ->columnSpanFull()
+                                        ->required(),
 
                                     TextInput::make('meta_desc')
                                         ->label('Opis Meta')
@@ -136,7 +137,8 @@ class NfzResource extends Resource
                                         ->afterStateUpdated(function (Livewire $livewire, Component $component) {
                                             $validate = $livewire->validateOnly($component->getStatePath());
                                         })
-                                        ->columnSpanFull(),
+                                        ->columnSpanFull()
+                                        ->required(),
                                 ]),
                         ]
                     ),

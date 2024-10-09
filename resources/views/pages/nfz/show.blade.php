@@ -2,20 +2,25 @@
 
 
 
+
     {{-- HEADER --}}
     <x-header title="{{$page->title}}" bgi="{{asset('storage/' . $page->banner_img)}}" />
 
-    <section class="py-24">
+    <section class="pt-12 lg:pt-24 ">
 
         <x-container class="max-w-screen-xl">
             {{-- CONTENT --}}
-            <div class="prose max-w-full">
+            <x-prose>
+
+
 
                 {!! tiptap_converter()->asHTML($page->description) !!}
-            </div>
+            </x-prose>
 
         </x-container>
     </section>
+
+    <x-facebook-banner />
 
 
 </x-layouts.app>

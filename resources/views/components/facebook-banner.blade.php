@@ -6,7 +6,7 @@
         <h2 class="text-3xl">Śledź nas na facebooku</h2>
         <hr class="border border-secondary-400 w-[150px]">
     </div>
-    <div class="grid sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-x-2 gap-y-12 sm:gap-y-0 pb-16">
+    <div class="grid sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-x-2 gap-y-6 sm:gap-y-0 pb-6 lg:pb-2">
 
 
         <img src="{{asset('assets/images/1200/sanatorium-rabka-8.webp')}}"

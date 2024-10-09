@@ -19,11 +19,14 @@
             </span>
         </div>
 
-        <ul
+        {{-- <ul
             class="mt-2 invisible absolute z-50 flex  flex-col bg-gray-100 py-1 px-4  shadow-xl group-hover:visible w-44">
 
             {{$slot}}
 
+        </ul> --}}
+        <ul class="mt-2 invisible absolute z-50 flex flex-col bg-gray-100 py-1 px-4 shadow-xl group-hover:visible min-w-max" >
+            {{$slot}}
         </ul>
     </div>
 </li>
