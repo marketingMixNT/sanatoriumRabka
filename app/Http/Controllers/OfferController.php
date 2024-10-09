@@ -3,23 +3,24 @@
 namespace App\Http\Controllers;
 
 use App\Models\Offer;
+use App\Models\OfferPage;
 use Illuminate\Http\Request;
 
 class OfferController extends Controller
 {
-    public function index()
+    public function index($slug)
     {
-        $offers = Offer::all();
+        $page = OfferPage::where('slug->pl', $slug)->first();
 
 
 
-        return view('pages.offer.index', compact('offers'));
+        return view('pages.offer.page', compact('page'));
     }
 
     public function show($slug)
     {
 
-        $offer = Offer::whereJsonContains('slug', $slug)->first();
+        $offer = Offer::whereJsonContains('slug->pl', $slug)->first();
 
 
         $otherOffers = Offer::select('title', 'slug', 'thumbnail',)

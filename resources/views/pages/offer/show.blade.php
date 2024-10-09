@@ -5,7 +5,7 @@
         bgi="https://images.unsplash.com/photo-1726931598787-00b60840177c?q=80&w=4470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" />
 
     {{-- section --}}
-    <section class="pt-24 pb-12">
+    <section class="py-12 lg:pt-24 pb-12">
 
         <x-container class="max-w-screen-xl">
 
@@ -45,18 +45,15 @@
 
 
         <div
-        class="flex flex-col lg:flex-row justify-center items-center gap-x-16 pt-20 px-2 sm:w-[90%] md:w-full mx-auto">
+            class="flex flex-col lg:flex-row justify-center items-center gap-x-16 pt-20 px-2 sm:w-[90%] md:w-full mx-auto">
 
-        @foreach ($otherOffers as $offer)
+            @foreach ($otherOffers as $offer)
 
-        <x-offer-card :offer="$offer" href="/" />
+            <x-offer-card :offer="$offer" href="/" />
 
-        @endforeach
+            @endforeach
 
-    </div>
-    <div class="flex justify-end items-center">
-
-        {{-- <x-ui.link href="{{route('apartment.index')}}" title=" {{__('room.other-rooms.link')}}" /> --}}
-    </div>
+        </div>
     </section>
+    <x-facebook-banner />
 </x-layouts.app>

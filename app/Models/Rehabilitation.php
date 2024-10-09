@@ -4,10 +4,14 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Translatable\HasTranslations;
+
 
 class Rehabilitation extends Model
 {
     use HasFactory;
+    use HasTranslations;
+
 
     /**
      * The attributes that are mass assignable.
@@ -19,6 +23,7 @@ class Rehabilitation extends Model
         'meta_desc',
         'banner_img',
         'title',
+        'slug',
         'description',
     ];
 
@@ -32,6 +37,15 @@ class Rehabilitation extends Model
         'meta_title' => 'array',
         'meta_desc' => 'array',
         'title' => 'array',
+        'slug' => 'array',
         'description' => 'array',
+    ];
+
+    public $translatable = [
+        'meta_title',
+        'meta_desc',
+        'title',
+        'slug',
+        'description',
     ];
 }

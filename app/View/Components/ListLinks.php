@@ -6,6 +6,7 @@ use Closure;
 use App\Models\Nfz;
 use App\Models\Room;
 use App\Models\Offer;
+use App\Models\OfferPage;
 use App\Models\Rehabilitation;
 use Illuminate\View\Component;
 use Illuminate\Contracts\View\View;
@@ -19,17 +20,15 @@ class ListLinks extends Component
     public $rooms;
     public $offers;
 
-    public $rehabilitations;
+    public $offersPages;
 
     public $nfz;
     public function __construct()
     {
-        $this->rooms = Room::select('title','slug')->get();
-        $this->nfz = Nfz::select('title','slug')->get();
-
-
-        // $this->offers = Offer::select('title','slug')->get();
-        // $this->rehabilitations::select('title','slug')->get();
+        $this->rooms = Room::select('title', 'slug')->orderBy('sort', 'asc')->get();
+        $this->nfz = Nfz::select('title', 'slug')->get();
+        $this->offers = Offer::select('title', 'slug')->orderBy('sort', 'asc')->get();
+        $this->offersPages = OfferPage::select('page_title', 'slug')->orderBy('sort', 'asc')->get();
     }
 
     /**
@@ -40,9 +39,8 @@ class ListLinks extends Component
         return view('components.nav.list-links', [
             "rooms" => $this->rooms,
             "nfz" => $this->nfz,
-            
-            // 'offers' => $this->offers,
-            // "rehabilitations" => $this->rehabilitations,
+            'offers' => $this->offers,
+            "offerPages" => $this->offersPages,
 
         ]);
     }

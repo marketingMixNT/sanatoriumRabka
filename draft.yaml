@@ -1,92 +1,9 @@
 models:
-  Room:
-    meta_title: json nullable
-    meta_desc: json nullable
-    title: json unique
-    slug: json unique
-    short_desc: json
-    description: json
-    thumbnail: text
-    gallery: text
-    sort: integer nullable
-
-  Offer:
-    meta_title: json nullable
-    meta_desc: json nullable
-    title: json unique
-    slug: json unique
-    thumbnail: text
-    banner_img: text
-    short_desc: json
-    description: json
-    published_at: datetime
-    published_end: datetime
-    sort: integer nullable
-
-  Slide:
-    image: text
-    alt: json
-    heading: json
-    text: json
-    link: text
-    button_text: json
-    sort: integer nullable
-
-  Gallery:
-    category: json
-    images: text
-    sort: integer nullable
-
-  Testimonial:
-    name: json
-    content: json
-    sort: integer nullable
-
-  Attraction:
-    name: json
-    image: text
-    sort: integer nullable
-
-  PrivacyPolicy:
-    content: json
-
-  Regulations:
-    content: json
-
-  Rabka:
-    meta_title: json nullable
-    meta_desc: json nullable
-    title: json
-    description: json
-
-  RabkaAttractions:
-    meta_title: json nullable
-    meta_desc: json nullable
-    banner_img: text
-    heading: json
-    subheading: json
-    description: json
-
-  Rehabilitation:
-    meta_title: json nullable
-    meta_desc: json nullable
-    banner_img: text
-    title: json unique
-    slug: json unique
-    description: json
-
-  RehabilitationTreatments:
-    meta_title: json nullable
-    meta_desc: json nullable
-    banner_img: text
-    title: json
-    description: json
-
-   Nfz:
+   OfferPage:
     meta_title: json nullable
     meta_desc: json nullable
     banner_img: text
     page_title: json unique
     slug: json unique
     header: json
-    description: json
+    content: json

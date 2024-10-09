@@ -4,10 +4,13 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Translatable\HasTranslations;
 
-class RehabilitationTreatments extends Model
+
+class OfferPage extends Model
 {
     use HasFactory;
+    use HasTranslations;
 
     /**
      * The attributes that are mass assignable.
@@ -18,8 +21,11 @@ class RehabilitationTreatments extends Model
         'meta_title',
         'meta_desc',
         'banner_img',
-        'title',
-        'description',
+        'page_title',
+        'slug',
+        'heading',
+        'content',
+        'sort',
     ];
 
     /**
@@ -31,7 +37,18 @@ class RehabilitationTreatments extends Model
         'id' => 'integer',
         'meta_title' => 'array',
         'meta_desc' => 'array',
-        'title' => 'array',
-        'description' => 'array',
+        'page_title' => 'array',
+        'slug' => 'array',
+        'heading' => 'array',
+        'content' => 'array',
+    ];
+
+    public $translatable = [
+        'meta_title',
+        'meta_desc',
+        'page_title',
+        'slug',
+        'heading',
+        'content'
     ];
 }

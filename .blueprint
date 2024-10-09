@@ -1,7 +1,7 @@
 created:
-    - database/factories/NfzFactory.php
-    - database/migrations/2024_09_27_144710_create_nfzs_table.php
-    - app/Models/Nfz.php
+    - database/factories/OfferPageFactory.php
+    - database/migrations/2024_10_09_082936_create_offer_pages_table.php
+    - app/Models/OfferPage.php
 models:
     Attraction: { name: longtext, image: text, sort: 'integer nullable default:NULL' }
     Gallery: { category: longtext, images: text, sort: 'integer nullable default:NULL' }
@@ -18,3 +18,4 @@ models:
     Testimonial: { name: longtext, source: longtext, content: longtext, sort: 'integer nullable default:NULL' }
     User: { name: string, email: string, email_verified_at: 'timestamp nullable default:NULL', password: string, remember_token: 'string:100 nullable default:NULL' }
     Nfz: { meta_title: 'json nullable', meta_desc: 'json nullable', banner_img: text, title: 'json unique', slug: 'json unique', description: json }
+    OfferPage: { meta_title: 'json nullable', meta_desc: 'json nullable', banner_img: text, page_title: 'json unique', slug: 'json unique', header: json, content: json }

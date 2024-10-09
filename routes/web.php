@@ -17,11 +17,12 @@ Route::get('/pokoje/{slug}',[RoomController::class,'show'])->name('room.show');
 Route::get("/nfz/{slug}", [NfzController::class, 'show'])->name("nfz.show");
 Route::get("/galeria", GalleryController::class)->name("gallery");
 
+Route::get("/oferty/{slug}", [OfferController::class, 'index'])->name("offer.page");
+Route::get('/oferta/{slug}', [OfferController::class, 'show'])->name('offer.show');
 
 
 Route::get("/kontakt", ContactController::class)->name("contact");
-Route::get("/oferty", [OfferController::class, 'index'])->name("offer.index");
-Route::get('/oferta/{slug}', [OfferController::class, 'show'])->name('offer.show');
+
 
 Route::get('/rabka-zdroj', [RabkaController::class, 'info'])->name('rabka.info');
 Route::get('/okoliczne-atrakcje', [RabkaController::class, 'attractions'])->name('rabka.attractions');

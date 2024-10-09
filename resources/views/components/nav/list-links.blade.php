@@ -40,10 +40,14 @@
 
         <x-nav.dropdown title="Oferty">
 
-            {{-- @foreach ($nfz as $page)
-            <x-nav.dropdown-item href="{{route('nfz.show', $page->slug)}}">{{$page->title}}
+            @foreach ($offerPages as $page)
+            <x-nav.dropdown-item href="{{route('offer.page', $page->slug)}}">{{$page->page_title}}
             </x-nav.dropdown-item>
-            @endforeach --}}
+            @endforeach
+            @foreach ($offers as $offer)
+            <x-nav.dropdown-item href="{{route('offer.show', $offer->slug)}}">{{$offer->title}}
+            </x-nav.dropdown-item>
+            @endforeach
         </x-nav.dropdown>
 
         <x-nav.nav-item href="{{route('contact')}}">Kontakt</x-nav.nav-item>

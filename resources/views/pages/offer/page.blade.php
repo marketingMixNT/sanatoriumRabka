@@ -4,7 +4,7 @@
 
 
     {{-- HEADER --}}
-    <x-header title="{{$page->title}}" bgi="{{asset('storage/' . $page->banner_img)}}" />
+    <x-header title="{{$page->page_title}}" bgi="{{asset('storage/' . $page->banner_img)}}" />
 
     <section class="pt-12 lg:pt-24 ">
 
@@ -14,7 +14,7 @@
 
 
 
-                {!! tiptap_converter()->asHTML($page->description) !!}
+                {!! tiptap_converter()->asHTML($page->content) !!}
             </x-prose>
 
         </x-container>
