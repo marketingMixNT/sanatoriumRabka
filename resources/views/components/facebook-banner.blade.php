@@ -17,10 +17,10 @@
             alt="stołowka w Sanatorium Rabka" class="h-full w-full object-cover aspect-square shadow-md rounded-sm" loading="lazy">
 
         <img src="{{asset('assets/images/1200/sanatorium-rabka-36.webp')}}"
-            alt="widok z pokoju w Sanatorium Rabka" class=" object-cover aspect-square shadow-md hidden sm:block" loading="lazy">
+            alt="widok z pokoju w Sanatorium Rabka" class=" object-cover aspect-square shadow-md hidden md:block" loading="lazy">
 
         <img src="{{asset('assets/images/1200/sanatorium-rabka-33.webp')}}"
-            alt="" class=" object-cover aspect-square shadow-md hidden lg:block" loading="lazy">
+            alt="" class=" object-cover aspect-square shadow-md hidden xl:block" loading="lazy">
     </div>
 
 </div>

@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 
 class OfferController extends Controller
 {
-    public function index($slug)
+    public function page($slug)
     {
         $page = OfferPage::where('slug->pl', $slug)->first();
 

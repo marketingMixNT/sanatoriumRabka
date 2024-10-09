@@ -3,22 +3,33 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\NfzController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\RoomController;
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\OfferController;
 use App\Http\Controllers\RabkaController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\OtherPageController;
-use App\Http\Controllers\RoomController;
+use App\Http\Controllers\RehabilitationController;
 
 Route::get("/", HomeController::class)->name("home");
+
 Route::get("/o-nas", AboutController::class)->name("about");
+
 Route::get('/pokoje/{slug}',[RoomController::class,'show'])->name('room.show');
+
 Route::get("/nfz/{slug}", [NfzController::class, 'show'])->name("nfz.show");
+
+Route::get("/rehabilitacja/zabiegi", [RehabilitationController::class, 'treatments'])->name("rehabilitation.treatments");
+Route::get("/rehabilitacja/{slug}", [RehabilitationController::class, 'page'])->name("rehabilitation.page");
+
+
 Route::get("/galeria", GalleryController::class)->name("gallery");
 
-Route::get("/oferty/{slug}", [OfferController::class, 'index'])->name("offer.page");
+Route::get("/oferty/{slug}", [OfferController::class, 'page'])->name("offer.page");
 Route::get('/oferta/{slug}', [OfferController::class, 'show'])->name('offer.show');
+
+
 
 
 Route::get("/kontakt", ContactController::class)->name("contact");

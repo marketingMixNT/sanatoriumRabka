@@ -1,17 +1,15 @@
 <?php
 
-namespace App\Filament\Resources\RehabilitationResource\Pages;
+namespace App\Filament\Resources\TreatmentResource\Pages;
 
-use App\Filament\Resources\RehabilitationResource;
+use App\Filament\Resources\TreatmentResource;
 use Filament\Actions;
 use Filament\Resources\Pages\CreateRecord;
 
-class CreateRehabilitation extends CreateRecord
+class CreateTreatment extends CreateRecord
 {
-
     use CreateRecord\Concerns\Translatable;
-
-    protected static string $resource = RehabilitationResource::class;
+    protected static string $resource = TreatmentResource::class;
 
       // protected function getHeaderActions(): array
     // {

@@ -22,10 +22,14 @@
 
         <x-nav.dropdown title="Rehabilitacja">
 
-            {{-- @foreach ($nfz as $page)
-            <x-nav.dropdown-item href="{{route('nfz.show', $page->slug)}}">{{$page->title}}
+            @foreach ($rehabilitationPages as $page)
+            <x-nav.dropdown-item href="{{route('rehabilitation.page', $page->slug)}}">{{$page->page_title}}
             </x-nav.dropdown-item>
-            @endforeach --}}
+            @endforeach
+
+            <x-nav.dropdown-item href="{{route('rehabilitation.treatments')}}">Zabiegi
+            </x-nav.dropdown-item>
+          
         </x-nav.dropdown>
 
         <x-nav.nav-item href="{{route('gallery')}}">Galeria</x-nav.nav-item>
