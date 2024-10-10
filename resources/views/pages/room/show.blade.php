@@ -26,7 +26,7 @@
         <x-container class="max-w-screen-xl mx-auto">
 
             <div class="flex flex-col lg:flex-row gap-y-12">
-                <div class="w-full lg:w-[45%]   sticky top-12 space-y-6 h-full order-1 lg:order-none">
+                <div class="w-full lg:w-[45%]   sticky top-28 space-y-6 h-full order-1 lg:order-none">
 
                     <div class="prose max-w-full font-light">
 

@@ -23,15 +23,11 @@ class OfferController extends Controller
         $offer = Offer::whereJsonContains('slug->pl', $slug)->first();
 
 
-        $otherOffers = Offer::select('title', 'slug', 'thumbnail',)
-            ->where('id', '!=', $offer->id)
-            ->orderBy('sort')
-            ->take(3)
-            ->get();
+      
 
 
 
 
-        return view('pages.offer.show', compact('offer', 'otherOffers'));
+        return view('pages.offer.show', compact('offer',));
     }
 }

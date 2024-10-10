@@ -17,7 +17,7 @@ class HomeController extends Controller
     public function __invoke(Request $request)
     {
         $slides = Slide::orderBy('sort','asc')->get();
-        $offers = Offer::orderBy('sort','asc')->get();
+        $offers = Offer::select('id','title','slug','thumbnail','short_desc')->orderBy('sort','asc')->get();
         $attractions = Attraction::orderBy('sort','asc')->get();
         $testimonials = Testimonial::orderBy('sort','asc')->get();
 

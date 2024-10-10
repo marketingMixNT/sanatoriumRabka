@@ -124,7 +124,7 @@
     </section>
 
     {{-- section --}}
-    <section class="pt-12 pb-12">
+    <section class="pt-6 lg:pt-12 pb-12">
         <x-container class="max-w-screen-xl">
 
             <div class="grid lg:grid-cols-2 gap-12 lg:gap-32 ">

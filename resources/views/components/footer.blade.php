@@ -49,7 +49,7 @@
         </div>
         {{-- links --}}
         <div class="flex flex-col xs:flex-row justify-center items-center gap-8 border-t border-b py-3">
-            <a href="{{route('privacy-policy')}}" class="text-sm hover:text-primary-400 duration-300">Polityka Prywatnosci</a>
+            <a href="{{route('privacy-policy')}}" class="text-sm hover:text-primary-400 duration-300">Polityka Prywatności</a>
             <a href="{{route('regulations')}}" class="text-sm hover:text-primary-400 duration-300">Regulamin</a>
         </div>
         {{-- bottom --}}
