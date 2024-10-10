@@ -2,9 +2,10 @@
 
 namespace App\Filament\Resources\RegulationsResource\Pages;
 
-use App\Filament\Resources\RegulationsResource;
 use Filament\Actions;
+use App\Models\Regulations;
 use Filament\Resources\Pages\ListRecords;
+use App\Filament\Resources\RegulationsResource;
 
 class ListRegulations extends ListRecords
 {
@@ -12,12 +13,17 @@ class ListRegulations extends ListRecords
 
     protected static string $resource = RegulationsResource::class;
 
+  
+
     protected function getHeaderActions(): array
     {
-        return [
-            Actions\CreateAction::make(),
-            // Actions\LocaleSwitcher::make(),
+       
+        $privacyPolicyExists = Regulations::exists();
 
-        ];
+        return array_filter([
+           
+            !$privacyPolicyExists ? Actions\CreateAction::make() : null,
+            // Actions\LocaleSwitcher::make(),
+        ]);
     }
 }

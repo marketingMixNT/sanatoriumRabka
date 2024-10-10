@@ -12,7 +12,7 @@
         </div>
         {{-- cta buttons --}}
         <div class="hidden xl:flex">
-            <x-link-button href="/">Jesień w górach</x-link-button>
+            <x-link-button href="https://sanatorium.mmhub.pl/oferta/swieta-i-sylwester-w-gorach">Oferta świąteczna</x-link-button>
         </div>
 
         {{-- hamburger --}}

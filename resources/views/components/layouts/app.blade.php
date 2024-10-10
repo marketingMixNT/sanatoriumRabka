@@ -12,7 +12,7 @@
 
 </head>
 
-<body class="bg-white font-text font-light h-full ">
+<body class="bg-white font-text font-light h-full overflow-x-hidden ">
 
 
     <x-preloader />

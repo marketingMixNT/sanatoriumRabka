@@ -2,9 +2,10 @@
 
 namespace App\Filament\Resources\PrivacyPolicyResource\Pages;
 
-use App\Filament\Resources\PrivacyPolicyResource;
 use Filament\Actions;
+use App\Models\PrivacyPolicy;
 use Filament\Resources\Pages\ListRecords;
+use App\Filament\Resources\PrivacyPolicyResource;
 
 class ListPrivacyPolicies extends ListRecords
 {
@@ -13,11 +14,18 @@ class ListPrivacyPolicies extends ListRecords
 
     protected static string $resource = PrivacyPolicyResource::class;
 
+   
+
+
     protected function getHeaderActions(): array
     {
-        return [
-            Actions\CreateAction::make(),
+       
+        $privacyPolicyExists = PrivacyPolicy::exists();
+
+        return array_filter([
+           
+            !$privacyPolicyExists ? Actions\CreateAction::make() : null,
             // Actions\LocaleSwitcher::make(),
-        ];
+        ]);
     }
 }

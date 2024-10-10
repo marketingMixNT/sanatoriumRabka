@@ -7,7 +7,7 @@
     {{-- section --}}
     <section class="py-20">
 
-        <x-container class="max-w-screen-xl">
+        <x-container class="max-w-screen-xl prose">
 
             {!!$privacyPolicy->content!!}
 

@@ -52,7 +52,7 @@ class GalleryResource extends Resource
                     ->maxSize(8192)
                     ->optimize('webp')
                     ->imageEditor()
-                    ->maxFiles(12)
+                    ->maxFiles(15)
                     ->panelLayout('grid')
                     ->imageEditorAspectRatios([
                         null,

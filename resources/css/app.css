@@ -10,9 +10,10 @@
     @apply bg-secondary-400
 }
 
+.prose img{
+    margin:auto !important;
+    margin-top: 50px !important;
+}
 
-/* .swiper-slide{
-    height: auto !important;
-} */
 
 
