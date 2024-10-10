@@ -1,4 +1,4 @@
-<section class="py-12 sm:pt-20 pb-10">
+<section class="py-12 lg:pt-20 pb-10">
     <x-container>
 
         {{-- heading --}}
@@ -12,10 +12,10 @@
 
 
         {{-- offers loop --}}
-        <div class=" flex flex-wrap justify-center items-center max-w-[1600px] mx-auto gap-10 mt-12 sm:mt-24">
+        <div class=" flex flex-wrap justify-center items-center max-w-[1600px] mx-auto gap-10 mt-12 lg:mt-24">
             @foreach ($offers as $offer)
 
-            <x-offer-card :offer="$offer" href="/" />
+            <x-offer-card :offer="$offer" href="{{route('offer.show',$offer->slug)}}" />
             @endforeach
 
         </div>

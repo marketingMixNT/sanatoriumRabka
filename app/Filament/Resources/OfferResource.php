@@ -77,7 +77,14 @@ class OfferResource extends Resource
                                     ->maxLength(255)
                                     ->helperText('Przyjazny adres url który wygeneruje się automatycznie na podstawie tytułu.'),
 
-                               
+                                    Forms\Components\TextInput::make('subheading')
+                                    ->label('Subnagłowek')
+                                    ->columns(1)
+                                    ->required(),
+                                    Forms\Components\TextInput::make('heading')
+                                    ->label('Nagłówek')
+                                    ->columns(1)
+                                    ->required(),
 
                                 Textarea::make('short_desc')
                                     ->label('Krótki opis')
@@ -103,6 +110,12 @@ class OfferResource extends Resource
                                     ])
                                     ->required()
                                     ->columnSpanFull(),
+
+                                    Forms\Components\TextInput::make('reservation_link')
+                                    ->label('Link do rezerwacji')
+                                    ->columns(1)
+                                    ->url()
+                                    ->required(),
                             ]),
 
                         // PHOTOS

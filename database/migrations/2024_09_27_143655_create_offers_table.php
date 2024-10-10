@@ -18,6 +18,9 @@ return new class extends Migration
             $table->json('title')->unique();
             $table->json('slug')->unique();
             $table->text('thumbnail');
+            $table->json('heading');
+            $table->json('subheading');
+            $table->text('reservation_link');
             $table->text('banner_img');
             $table->json('short_desc');
             $table->json('description');

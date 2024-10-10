@@ -24,6 +24,9 @@ class Offer extends Model
         'title',
         'slug',
         'thumbnail',
+        'heading',
+        'subheading',
+        'reservation_link',
         'banner_img',
         'short_desc',
         'description',
@@ -73,6 +76,8 @@ class Offer extends Model
         'meta_desc',
         'title',
         'slug',
+        'heading',
+        'subheading',
         'description',
         'short_desc'
     ];

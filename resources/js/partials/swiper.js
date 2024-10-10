@@ -76,9 +76,7 @@ new Swiper(".testimonials-swiper", {
     slidesPerView: 1,
     spaceBetween: 50,
     breakpoints: {
-        800: {
-            slidesPerView: 2,
-        },
+        
         1280: {
             slidesPerView: 3,
             spaceBetween: 30,

@@ -1,4 +1,4 @@
-<section id="o-nas" class="pt-6 pb-12 sm:py-20">
+<section id="o-nas" class="pt-6 pb-12 lg:py-20">
     <x-container class="max-w-screen-xl  ">
 
         {{-- heading --}}

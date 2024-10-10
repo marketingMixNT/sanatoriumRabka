@@ -1,6 +1,6 @@
 
 <div id="drawer-navigation"
-    class="fixed top-0 left-0 z-40 h-screen py-4 px-8 overflow-y-auto transition-transform -translate-x-full bg-white w-72 dark:bg-gray-800"
+    class="fixed top-0 left-0 z-40 h-screen py-4 px-8 overflow-y-auto transition-transform -translate-x-full bg-white w-full sm:w-80 dark:bg-gray-800"
     tabindex="-1" aria-labelledby="drawer-navigation-label">
     <a href="{{route('home')}}" aria-label="strona główna"><img src="{{asset('assets/logo/logo.png')}}"
             alt="logo sanatorium rabka" class="w-28"></a>
@@ -13,7 +13,7 @@
         <span class="sr-only">Close menu</span>
     </button>
 
-    <div class="pt-8 overflow-y-auto">
+    <div class="pt-8 ">
 
         {{-- list links --}}
         <x-list-links />
